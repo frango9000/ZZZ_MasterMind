@@ -1,10 +1,6 @@
 package MasterMind;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 public class Mastermind {
-    // @SuppressWarnings("UnusedAssignment")
 
     public static void main(String[] args) {
 
