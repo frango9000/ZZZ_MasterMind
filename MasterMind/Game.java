@@ -15,91 +15,40 @@ import javax.swing.JOptionPane;
  */
 public class Game {
 
-    private static int tries = 0;
-    private static String tryLog = "";
+    private int tries;
+    private String tryLog;
 
-    static int perfMatches = 0;
-    static int semiMatches = 0;
-
-    private static boolean[] codeChecks;
-    private static boolean[] deCodeChecks;
-
-    public static int getTries() {
+    public Game() {
+        tries = 0;
+        tryLog = "";
+    }
+    
+    public int getTries() {
         return tries;
     }
 
-    public static void setTries(int tries) {
-        Game.tries = tries;
+    public void setTries(int tries) {
+        this.tries = tries;
     }
 
-    public static void incTries() {
+    public void incTries() {
         tries++;
     }
 
-    public static void updateLog(String str) {
+    public void updateLog(String str) {
         tryLog += str;
     }
 
-    public static String getTryLog() {
+    public String getTryLog() {
         return tryLog;
     }
 
-    public static void setTryLog(String tryLog) {
-        Game.tryLog = tryLog;
+    public void setTryLog(String tryLog) {
+        this.tryLog = tryLog;
     }
 
     public static void reset() {
 
-        perfMatches = 0;
-        semiMatches = 0;
-        codeChecks = new boolean[Rules.getCodeLenght() + 1];
-        deCodeChecks = new boolean[Rules.getCodeLenght() + 1];
-        Arrays.fill(codeChecks, Boolean.FALSE);
-        Arrays.fill(deCodeChecks, Boolean.FALSE);
-    }
-
-    public static int codeCheck(String code) {
-        int codeCheck = 0;
-        char[] ar = Rules.getOptionsArray();
-        for (int i = 0; i < ar.length; i++) {
-            for (int j = 0; j < code.length(); j++) {
-                if (code.charAt(j) == ar[i]) {
-                    codeCheck++;
-                }
-            }
-        }
-        return codeCheck;
-    }
-
-    public static int perfCheck(String cod, String deCod) {
-        int perfMatches = 0;
-        for (int i = 0; i < cod.length(); i++) {
-            if (deCod.charAt(i) == cod.charAt(i)) {
-                perfMatches++;
-                codeChecks[i] = true;
-                deCodeChecks[i] = true;
-            }
-        }
-        return perfMatches;
-    }
-
-    public static int semiCheck(String cod, String deCod) {
-        int semiMatches = 0;
-        for (int i = 0; i < deCod.length(); i++) {
-            for (int j = 0; j < cod.length(); j++) {
-                if (i != j && codeChecks[j] != true && deCodeChecks[i] != true) {
-                    if (deCod.charAt(i) == cod.charAt(j)) {
-                        semiMatches++;
-                        codeChecks[j] = true;
-                        deCodeChecks[i] = true;
-                        break;
-                    }
-
-                    System.out.println(j + " = " + codeChecks[j]);
-                }
-            }
-        }
-        return semiMatches;
     }
 
     public static void newGameMsg() {
@@ -114,23 +63,35 @@ public class Game {
 
     }
 
-    public static String insertCode(String label) {
-        JFrame frame = new JFrame("Insert Code");
-        String code = JOptionPane.showInputDialog(frame,
-                label + "Insert Code?\nDont let Player 2 look at the code.\n" + Arrays.toString(Rules.getOptionsArray()) + "\nformat: " + Rules.getOptionsStr() + "", null);
+    public static String insertCode() {
+        String label = "";
+        String code = "";
+        do {
+            JFrame frame = new JFrame("Insert Code");
+            code = JOptionPane.showInputDialog(frame,
+                    label + "Insert Code?\nDont let Player 2 look at the code.\n" + Arrays.toString(Rules.getOptionsArray()) + "\nformat: " + Rules.getOptionsStr() + "", null);
+            label = "Code Error, Try Again.";
+        } while (Code.codeCheck(code));
+
         return code;
     }
 
-    public static String insertDeCode(String label) {
-        JFrame frame = new JFrame("Insert deCode");
-        String deCode = JOptionPane.showInputDialog(frame,
-                label + "Insert deCode \n"
-                + "Turn: " + (tries + 1) + " of " + Rules.getMaxTries() + " !\n"
-                + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                + "format: " + Rules.getOptionsStr() + "\n"
-                + "Previous tries:\n"
-                + "Try# " + Rules.getOptionsStr() + " perf semi\n"
-                + tryLog);
+    public static String insertDeCode() {
+     
+        String label = "";
+        String deCode = "";
+        do {
+
+            JFrame frame = new JFrame("Insert deCode");
+            deCode = JOptionPane.showInputDialog(frame,
+                    label + "Insert deCode \n"
+                    + "Turn: " + ( + 1) + " of " + Rules.getMaxTries() + " !\n"
+                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
+                    + "format: " + Rules.getOptionsStr() + "\n"
+                    + "Previous tries:\n"
+                    + "Try# " + Rules.getOptionsStr() + " perf semi\n"
+            );//+ tryLog);
+        } while (Code.codeCheck(deCode));
         return deCode;
     }
 
@@ -157,13 +118,14 @@ public class Game {
 
         switch (seleccion) {
             case 0:
-                //Circulo circulo = new Circulo();
-                //circulo.mostrarArea();
                 break;
             case 1:
                 break;
 
         }
 
+    }
+    public static void startGame() {
+        
     }
 }

@@ -4,25 +4,19 @@ public class Mastermind {
 
     public static void main(String[] args) {
 
-        int codeCheck;
-        String code;
-
-        int deCodeCheck;
-        String deCode;
-
-        String codeLabel = "";
         String resultLabel = "";
 
-        //Start Game
-        Rules.defaultRules();
+        //Start 
+        Game game = new Game();
         Game.newGameMsg();
 
-        do {
-            code = Game.insertCode(codeLabel);
-            codeCheck = Game.codeCheck(code);
+        Code code = new Code(Game.insertCode());
+        while (!Code.codeCheck(code.getCode())) {
+            
+            Code.codeCheck(code.getCode());
             codeLabel = "Not Valid Code. Try again\n";
 
-        } while (code.length() != Rules.getCodeLenght() || codeCheck != Rules.getCodeLenght());
+        } 
 
         System.out.println("Your code is Valid");
         codeLabel = "";

@@ -26,19 +26,13 @@ public class Rules {
         optionsStr = buildString(codeLenght);
     }
 
-    public static boolean editRules(int codeLen, int codeVal, int maxTri) {
-        codeLenght = codeLen;
-        codeValues = codeVal;
-        maxTries = maxTri;
+    public static boolean editRules(int codeL, int codeV, int maxT) {
+        codeLenght = codeL;
+        codeValues = codeV;
+        maxTries = maxT;
         optionsArray = buildArray(codeValues);
         optionsStr = buildString(codeLenght);
-        if (codeLenght > 15 || codeLenght < 2) {
-            return false;
-        }
-        if (codeValues > 15 || codeValues < 2) {
-            return false;
-        }
-        return maxTries >= 2;
+        return verifyRules();
     }
 
     public static int getCodeLenght() {
@@ -53,7 +47,25 @@ public class Rules {
         return maxTries;
     }
 
-    public static char[] buildArray(int len) {
+    public static char[] getOptionsArray() {
+        return optionsArray;
+    }
+
+    public static String getOptionsStr() {
+        return optionsStr;
+    }
+
+    public static boolean verifyRules() {
+        if (codeLenght > 15 || codeLenght < 2) {
+            return false;
+        }
+        if (codeValues > 15 || codeValues < 2) {
+            return false;
+        }
+        return maxTries >= 2;
+    }
+
+    private static char[] buildArray(int len) {
 
         char[] fullArray = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'};
         char[] options = new char[len];
@@ -61,20 +73,12 @@ public class Rules {
         return options;
     }
 
-    public static char[] getOptionsArray() {
-        return optionsArray;
-    }
-
-    public static String buildString(int val) {
+    private static String buildString(int val) {
         String str = "";
         for (int i = 0; i < val; i++) {
             str = str + "X";
         }
         return str;
-    }
-
-    public static String getOptionsStr() {
-        return optionsStr;
     }
 
 }
