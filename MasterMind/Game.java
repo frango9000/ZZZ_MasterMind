@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MasterMind;
 
 import java.util.Arrays;
@@ -11,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author NarF
+ * @author fsancheztemprano
  */
 public class Game {
 
@@ -50,8 +45,21 @@ public class Game {
         this.tryLog = tryLog;
     }
 
-    public static void reset() {
 
+    public void startGame() {
+        code = new Code(insertCode());
+
+        do {
+            Code deCode = new Code(insertDeCode(), code);
+            incTries();
+            decodes[tries] = deCode;
+            updateLog(getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
+            if (deCode.getPerfMatches() >= Rules.getCodeLenght()) {
+                break;
+            }
+        } while (tries < Rules.getMaxTries());
+
+        gameOver(decodes[tries]);
     }
 
     public boolean codeCheck(String cod) {
@@ -65,18 +73,6 @@ public class Game {
             }
         }
         return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
-    }
-
-    public static void newGameMsg() {
-        JFrame welcome = new JFrame("Result");
-        JOptionPane.showMessageDialog(welcome,
-                "Welcome to MasterMind:\n"
-                + "                    In this game Player 1 inserts a code\n"
-                + "                    and Player 2 tries to crack it.\n"
-                + "                    after every try player 2 will be given hints\n"
-                + "                    based on the number of correct placements and\n"
-                + "                    the number of correct choices but bad placements");
-
     }
 
     public String insertCode() {
@@ -124,42 +120,5 @@ public class Game {
                 + "Log:\n"
                 + "Try# " + Rules.getOptionsStr() + " perf semi\n"
                 + tryLog);
-
-        //Game.updateLog(cod + "\n" + Game.getTries() + " " + deCod + " " + Game.perfMatches + " " + Game.semiMatches);
-    }
-
-    public static void restartPrompt() {
-        String[] opciones = {"Si", "No"};
-        int seleccion = JOptionPane.showOptionDialog(null, "Volver a Jugar", "MasterMind", 0, 0, null, opciones, 1);
-
-        switch (seleccion) {
-            case 0:
-                break;
-            case 1:
-                break;
-
-        }
-
-    }
-
-    public void startGame() {
-
-        //Start 
-        Game.newGameMsg();
-
-        code = new Code(insertCode());
-
-        do {
-            Code deCode = new Code(insertDeCode(), code);
-            incTries();
-            decodes[tries] = deCode;
-            updateLog(getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
-            if (deCode.getPerfMatches() >= Rules.getCodeLenght()) {
-                break;
-            }
-        } while (tries < Rules.getMaxTries());
-
-        gameOver(decodes[tries]);
-        Game.restartPrompt();
     }
 }
