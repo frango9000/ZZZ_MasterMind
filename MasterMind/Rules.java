@@ -1,38 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MasterMind;
+
+import java.util.Arrays;
 
 /**
  *
- * @author NarF
+ * @author fsancheztemprano
  */
 public class Rules {
 
-    private static int codeLenght;
-    private static int codeValues;
-    private static int maxTries;
+    private static int codeLenght = 4;
+    private static int codeValues = 6;
+    private static int maxTries = 10;
 
     private static char[] optionsArray;
     private static String optionsStr;
 
     public static void defaultRules() {
-        codeLenght = 4;
-        codeValues = 6;
-        maxTries = 3;
         optionsArray = buildArray(codeValues);
         optionsStr = buildString(codeLenght);
     }
 
-    public static boolean editRules(int codeL, int codeV, int maxT) {
+    public static void editRules(int codeL, int codeV, int maxT) {
         codeLenght = codeL;
         codeValues = codeV;
         maxTries = maxT;
         optionsArray = buildArray(codeValues);
         optionsStr = buildString(codeLenght);
-        return verifyRules();
     }
 
     public static int getCodeLenght() {
@@ -81,4 +74,7 @@ public class Rules {
         return str;
     }
 
+    public static String rulesToString() {
+        return "Rules: \nMax Tries: " + getMaxTries() + "\nCode Lenght: " + getCodeLenght() + "\nCode Options: " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
+    }
 }
