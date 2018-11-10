@@ -21,7 +21,7 @@ public class Rules {
     public static void defaultRules() {
         codeLenght = 4;
         codeValues = 6;
-        maxTries = 10;
+        maxTries = 3;
         optionsArray = buildArray(codeValues);
         optionsStr = buildString(codeLenght);
     }

@@ -5,6 +5,8 @@
  */
 package MasterMind;
 
+import java.util.Arrays;
+
 /**
  *
  * @author fsancheztemprano
@@ -25,8 +27,15 @@ public class Code {
 
     public Code(String code, Code cod) {
         this.code = code;
+        
+            codeChecks = new boolean[Rules.getCodeLenght()+1];
+            Arrays.fill(codeChecks, Boolean.FALSE);
+            deCodeChecks = new boolean[Rules.getCodeLenght()+1];
+            Arrays.fill(deCodeChecks, Boolean.FALSE);
+            
         perfMatches = perfCheck(cod);
         semiMatches = semiCheck(cod);
+                
     }
 
     public String getCode() {
@@ -42,18 +51,7 @@ public class Code {
     }
 
     
-    public static boolean codeCheck(String code) {
-        int codeCheck = 0;
-        char[] ar = Rules.getOptionsArray();
-        for (int i = 0; i < ar.length; i++) {
-            for (int j = 0; j < code.length(); j++) {
-                if (code.charAt(j) == ar[i]) {
-                    codeCheck++;
-                }
-            }
-        }
-        return code.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
-    }
+
 
     private int perfCheck(Code cod) {
         int matches=0;
