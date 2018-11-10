@@ -17,10 +17,13 @@ public class Game {
 
     private int tries;
     private String tryLog;
+    private Code code;
+    private Code[] decodes;
 
     public Game() {
         tries = 0;
         tryLog = "";
+        decodes = new Code[Rules.getMaxTries()+1];
     }
     
     public int getTries() {
@@ -50,7 +53,18 @@ public class Game {
     public static void reset() {
 
     }
-
+    public boolean codeCheck(String cod) {
+        int codeCheck = 0;
+        char[] ar = Rules.getOptionsArray();
+        for (int i = 0; i < ar.length; i++) {
+            for (int j = 0; j < cod.length(); j++) {
+                if (cod.charAt(j) == ar[i]) {
+                    codeCheck++;
+                }
+            }
+        }
+        return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
+    }
     public static void newGameMsg() {
         JFrame welcome = new JFrame("Result");
         JOptionPane.showMessageDialog(welcome,
@@ -63,44 +77,44 @@ public class Game {
 
     }
 
-    public static String insertCode() {
+    public String insertCode() {
         String label = "";
-        String code = "";
+        String codeIn = "";
         do {
             JFrame frame = new JFrame("Insert Code");
-            code = JOptionPane.showInputDialog(frame,
+            codeIn = JOptionPane.showInputDialog(frame,
                     label + "Insert Code?\nDont let Player 2 look at the code.\n" + Arrays.toString(Rules.getOptionsArray()) + "\nformat: " + Rules.getOptionsStr() + "", null);
             label = "Code Error, Try Again.";
-        } while (Code.codeCheck(code));
+        } while (!codeCheck(codeIn));
 
-        return code;
+        return codeIn;
     }
 
-    public static String insertDeCode() {
+    public String insertDeCode() {
      
         String label = "";
-        String deCode = "";
+        String deCodeIn = "";
         do {
 
             JFrame frame = new JFrame("Insert deCode");
-            deCode = JOptionPane.showInputDialog(frame,
+            deCodeIn = JOptionPane.showInputDialog(frame,
                     label + "Insert deCode \n"
                     + "Turn: " + ( + 1) + " of " + Rules.getMaxTries() + " !\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + "format: " + Rules.getOptionsStr() + "\n"
                     + "Previous tries:\n"
                     + "Try# " + Rules.getOptionsStr() + " perf semi\n"
-            );//+ tryLog);
-        } while (Code.codeCheck(deCode));
-        return deCode;
+                    + tryLog);
+        } while (!codeCheck(deCodeIn));
+        return deCodeIn;
     }
 
-    public static void gameOver(String cod, String deCod) {
+    public void gameOver(Code deCod) {
         String finalLog;
-        if (Game.perfMatches == Rules.getCodeLenght() && Game.getTries() < Rules.getMaxTries()) {
-            finalLog = "Game Over!\nYou cracked the code! (" + cod + ")\n";
+        if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
+            finalLog = "Game Over!\nYou cracked the code! (" + code.getCode() + ")\n";
         } else {
-            finalLog = "Game Over!\nYou failed cracking the code! (" + cod + ")\n";
+            finalLog = "Game Over!\nYou failed cracking the code! (" + code.getCode() + ")\n";
         }
         JFrame finalFrame = new JFrame("Insert deCode");
         JOptionPane.showMessageDialog(finalFrame,
@@ -125,44 +139,25 @@ public class Game {
         }
 
     }
-    public static void startGame() {
-        String resultLabel = "";
+
+    public void startGame() {
 
         //Start 
-        Game game = new Game();
         Game.newGameMsg();
 
-        Code code = new Code(Game.insertCode());
-        while (!Code.codeCheck(code.getCode())) {
-            
-            Code.codeCheck(code.getCode());
-            codeLabel = "Not Valid Code. Try again\n";
-
-        } 
-
-        System.out.println("Your code is Valid");
-        codeLabel = "";
+        code = new Code(insertCode());
 
         do {
-            do {
-                deCode = Game.insertDeCode(codeLabel);
-                deCodeCheck = Game.codeCheck(deCode);
-                codeLabel = "Not Valid Code. Try again\n";
+            Code deCode = new Code(insertDeCode(), code);
+            incTries();
+            decodes[tries] = deCode;
+            updateLog(getTries()+"/"+Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
+            if (deCode.getPerfMatches() >= Rules.getCodeLenght()) {
+                break;
+            }
+        } while (tries < Rules.getMaxTries());
 
-            } while (deCode.length() != Rules.getCodeLenght() || deCodeCheck != Rules.getCodeLenght());
-
-            System.out.println("Your deCode is Valid");
-
-            Game.reset();
-            Game.perfMatches = Game.perfCheck(code, deCode);
-            Game.semiMatches = Game.semiCheck(code, deCode);
-            Game.incTries();
-
-            Game.updateLog(Game.getTries() + " " + deCode + " " + Game.perfMatches + " " + Game.semiMatches + "\n");
-
-        } while (Game.perfCheck(code, deCode) != Rules.getCodeLenght());
-
-        Game.gameOver(code, deCode);
+        gameOver(decodes[tries]);
         Game.restartPrompt();
     }
 }
