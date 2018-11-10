@@ -6,6 +6,6 @@ public class Mastermind {
         Rules.defaultRules();
         Game game = new Game();
         game.startGame();
-        
+
     }
 }

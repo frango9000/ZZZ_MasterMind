@@ -23,9 +23,9 @@ public class Game {
     public Game() {
         tries = 0;
         tryLog = "";
-        decodes = new Code[Rules.getMaxTries()+1];
+        decodes = new Code[Rules.getMaxTries() + 1];
     }
-    
+
     public int getTries() {
         return tries;
     }
@@ -53,6 +53,7 @@ public class Game {
     public static void reset() {
 
     }
+
     public boolean codeCheck(String cod) {
         int codeCheck = 0;
         char[] ar = Rules.getOptionsArray();
@@ -65,6 +66,7 @@ public class Game {
         }
         return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
     }
+
     public static void newGameMsg() {
         JFrame welcome = new JFrame("Result");
         JOptionPane.showMessageDialog(welcome,
@@ -91,7 +93,7 @@ public class Game {
     }
 
     public String insertDeCode() {
-     
+
         String label = "";
         String deCodeIn = "";
         do {
@@ -99,7 +101,7 @@ public class Game {
             JFrame frame = new JFrame("Insert deCode");
             deCodeIn = JOptionPane.showInputDialog(frame,
                     label + "Insert deCode \n"
-                    + "Turn: " + ( + 1) + " of " + Rules.getMaxTries() + " !\n"
+                    + "Turn: " + (+1) + " of " + Rules.getMaxTries() + " !\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + "format: " + Rules.getOptionsStr() + "\n"
                     + "Previous tries:\n"
@@ -151,7 +153,7 @@ public class Game {
             Code deCode = new Code(insertDeCode(), code);
             incTries();
             decodes[tries] = deCode;
-            updateLog(getTries()+"/"+Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
+            updateLog(getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
             if (deCode.getPerfMatches() >= Rules.getCodeLenght()) {
                 break;
             }
