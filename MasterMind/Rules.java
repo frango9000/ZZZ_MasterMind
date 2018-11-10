@@ -19,59 +19,66 @@ public class Rules {
     private static String optionsStr;
 
     public static void defaultRules() {
-        codeLenght = 6;
+        codeLenght = 4;
         codeValues = 6;
-        maxTries = 10;
+        maxTries = 3;
         optionsArray = buildArray(codeValues);
-        optionsStr = buildString(codeValues);
+        optionsStr = buildString(codeLenght);
     }
 
-    public static boolean editRules(int codeLen, int codeVal, int maxTri) {
-        codeLenght = codeLen;
-        codeValues = codeVal;
-        maxTries = maxTri;
+    public static boolean editRules(int codeL, int codeV, int maxT) {
+        codeLenght = codeL;
+        codeValues = codeV;
+        maxTries = maxT;
         optionsArray = buildArray(codeValues);
-        optionsStr = buildString(codeValues);
-        if(codeLenght > 15 || codeLenght<2) 
-            return false;
-        if(codeValues > 15 || codeValues<2) 
-            return false;
-        return maxTries >= 2;
+        optionsStr = buildString(codeLenght);
+        return verifyRules();
     }
 
     public static int getCodeLenght() {
         return codeLenght;
     }
+
     public static int getCodeValues() {
         return codeValues;
     }
+
     public static int getMaxTries() {
         return maxTries;
     }
 
+    public static char[] getOptionsArray() {
+        return optionsArray;
+    }
 
-    public static char[] buildArray(int len) {
+    public static String getOptionsStr() {
+        return optionsStr;
+    }
+
+    public static boolean verifyRules() {
+        if (codeLenght > 15 || codeLenght < 2) {
+            return false;
+        }
+        if (codeValues > 15 || codeValues < 2) {
+            return false;
+        }
+        return maxTries >= 2;
+    }
+
+    private static char[] buildArray(int len) {
 
         char[] fullArray = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'};
         char[] options = new char[len];
         System.arraycopy(fullArray, 0, options, 0, len);
         return options;
     }
-    
-      public static char[] getOptionsArray() {
-        return optionsArray;
-    }
-    public static String buildString(int val) {
-        String str="";
-        for(int i=0;i<val;i++){
-           str = str+"X";
+
+    private static String buildString(int val) {
+        String str = "";
+        for (int i = 0; i < val; i++) {
+            str = str + "X";
         }
         return str;
     }
-
-    public static String getOptionsStr() {
-        return optionsStr;
-    }
-    
 
 }
