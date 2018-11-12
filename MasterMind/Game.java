@@ -82,10 +82,10 @@ public class Game {
         String label = "";
         String codeIn = "";
         do {
-            JFrame frame = new JFrame("Insert Code");
+            JFrame frame = new JFrame(Loc.code1);
             codeIn = JOptionPane.showInputDialog(frame,
-                    label + "Insert Code?\nDont let Player 2 look at the code.\n" + Arrays.toString(Rules.getOptionsArray()) + "\nformat: " + Rules.getOptionsStr() + "", null);
-            label = "Code Error, Try Again.";
+                    label + Loc.code1+Loc.code2 + Arrays.toString(Rules.getOptionsArray()) + Loc.code3 + Rules.getOptionsStr() + "", null);
+            label = Loc.code4;
         } while (!codeCheck(codeIn));
 
         return codeIn;
@@ -97,14 +97,14 @@ public class Game {
         String deCodeIn = "";
         do {
 
-            JFrame frame = new JFrame("Insert deCode");
+            JFrame frame = new JFrame(Loc.decode1);
             deCodeIn = JOptionPane.showInputDialog(frame,
-                    label + "Insert deCode \n"
-                    + "Turn: " + (+1) + " of " + Rules.getMaxTries() + " !\n"
+                    label + Loc.decode1+" \n"
+                    + Loc.decode2 + (+1) + " / " + Rules.getMaxTries() + " !\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + "format: " + Rules.getOptionsStr() + "\n"
-                    + "Previous tries:\n"
-                    + "Try# " + Rules.getOptionsStr() + " perf semi\n"
+                    + Loc.code3+ Rules.getOptionsStr() + "\n"
+                    + Loc.decode3
+                    + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
                     + tryLog);
         } while (!codeCheck(deCodeIn));
         return deCodeIn;
@@ -113,15 +113,15 @@ public class Game {
     public void gameOver(Code deCod) {
         String finalLog;
         if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
-            finalLog = "Game Over!\nYou cracked the code! (" + code.getCode() + ")\n";
+            finalLog = Loc.over1 + Loc.over2 + code.getCode() + ")\n";
         } else {
-            finalLog = "Game Over!\nYou failed cracking the code! (" + code.getCode() + ")\n";
+            finalLog = Loc.over1 + Loc.over3 + code.getCode() + ")\n";
         }
-        JFrame finalFrame = new JFrame("Insert deCode");
+        JFrame finalFrame = new JFrame("Final");
         JOptionPane.showMessageDialog(finalFrame,
                 finalLog
                 + "Log:\n"
-                + "Try# " + Rules.getOptionsStr() + " perf semi\n"
+                + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
                 + tryLog);
     }
 }
