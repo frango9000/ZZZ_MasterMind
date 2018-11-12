@@ -75,7 +75,6 @@ public class Rules {
     }
 
     public static char[] getOptionsArray() {
-        System.out.println(optionsArray);
         return optionsArray;
     }
 
