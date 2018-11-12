@@ -82,10 +82,13 @@ public class Game {
         String label = "";
         String codeIn = "";
         do {
-            JFrame frame = new JFrame(Loc.code1);
-            codeIn = JOptionPane.showInputDialog(frame,
-                    label + Loc.code1+Loc.code2 + Arrays.toString(Rules.getOptionsArray()) + Loc.code3 + Rules.getOptionsStr() + "", null);
-            label = Loc.code4;
+            codeIn = JOptionPane.showInputDialog(null,
+                    label
+                    + Loc.code1 + "\n"
+                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
+                    + Loc.code2 + Rules.getOptionsStr(),
+                    "MasterMind", 3);
+            label = Loc.err1;
         } while (!codeCheck(codeIn));
 
         return codeIn;
@@ -96,16 +99,16 @@ public class Game {
         String label = "";
         String deCodeIn = "";
         do {
-
-            JFrame frame = new JFrame(Loc.decode1);
-            deCodeIn = JOptionPane.showInputDialog(frame,
-                    label + Loc.decode1+" \n"
-                    + Loc.decode2 + (+1) + " / " + Rules.getMaxTries() + " !\n"
+            deCodeIn = JOptionPane.showInputDialog(null,
+                    label
+                    + Loc.decode1 + "\n"
+                    + Loc.code2 + Rules.getOptionsStr() + "\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.code3+ Rules.getOptionsStr() + "\n"
-                    + Loc.decode3
-                    + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
-                    + tryLog);
+                    + Loc.decode2 + (tries + 1) + " / " + Rules.getMaxTries() + " !\n\n"
+                    + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                    + tryLog,
+                    "MasterMind", 3);
+            label = Loc.err1;
         } while (!codeCheck(deCodeIn));
         return deCodeIn;
     }
@@ -113,15 +116,14 @@ public class Game {
     public void gameOver(Code deCod) {
         String finalLog;
         if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
-            finalLog = Loc.over1 + Loc.over2 + code.getCode() + ")\n";
+            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
         } else {
-            finalLog = Loc.over1 + Loc.over3 + code.getCode() + ")\n";
+            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
         }
-        JFrame finalFrame = new JFrame("Final");
-        JOptionPane.showMessageDialog(finalFrame,
-                finalLog
-                + "Log:\n"
-                + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
-                + tryLog);
+        JOptionPane.showMessageDialog(null,
+                finalLog + "\n\n"
+                + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                + tryLog,
+                "MasterMind", 3);
     }
 }
