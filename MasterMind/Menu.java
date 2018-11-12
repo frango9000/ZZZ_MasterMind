@@ -61,7 +61,8 @@ public class Menu {
         }
 
     }
-    public static boolean pickRival(){
+
+    public static boolean pickRival() {
         String[] opciones = {"Human", "AI"};
         int newg = JOptionPane.showOptionDialog(null, "Pick Opponent?", "MasterMind", 0, 0, null, opciones, 1);
 
@@ -72,6 +73,6 @@ public class Menu {
                 return false;
 
         }
-        
+
     }
 }

@@ -18,15 +18,15 @@ public class Code {
     private boolean[] deCodeChecks;
 
     public Code() {
-        Random rand = new Random();            
-        char[] randCode = new char[Rules.getCodeLenght()];        
-        String options=new String(Rules.getOptionsArray());        
+        Random rand = new Random();
+        char[] randCode = new char[Rules.getCodeLenght()];
+        String options = new String(Rules.getOptionsArray());
         code = Rules.buildString(Rules.getCodeLenght());
-        
+
         for (int i = 1; i <= Rules.getCodeLenght(); i++) {
-            int randn = rand.nextInt(3);            
-            randCode[i-1]=options.charAt(randn);
-        }        
+            int randn = rand.nextInt(3);
+            randCode[i - 1] = options.charAt(randn);
+        }
         code = new String(randCode);
     }
 
