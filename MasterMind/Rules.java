@@ -12,6 +12,9 @@ public class Rules {
     private static int codeValues = 6;
     private static int maxTries = 10;
 
+    private static int maxLength = 15;
+    private static int maxValues = 15;
+
     private static char[] optionsArray;
     private static String optionsStr;
 
@@ -40,23 +43,49 @@ public class Rules {
         return maxTries;
     }
 
+    public static int getMaxLength() {
+        return maxLength;
+    }
+
+    public static int getMaxValues() {
+        return maxValues;
+    }
+
+    public static boolean setCodeLenght(int codeL) {
+        if (codeL > 1 && codeL <= maxLength) {
+            codeLenght = codeL;
+            optionsStr = buildString(codeLenght);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean setCodeValues(int codeV) {
+        if (codeV > 1 && codeV <= maxValues) {
+            codeValues = codeV;
+            optionsArray = buildArray(codeValues);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean setMaxTries(int maxT) {
+        if (maxT > 1 && maxT <= 99) {
+            codeValues = maxT;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static char[] getOptionsArray() {
-        System.out.println(optionsArray);
         return optionsArray;
     }
 
     public static String getOptionsStr() {
         return optionsStr;
-    }
-
-    public static boolean verifyRules() {
-        if (codeLenght > 15 || codeLenght < 2) {
-            return false;
-        }
-        if (codeValues > 15 || codeValues < 2) {
-            return false;
-        }
-        return maxTries >= 2;
     }
 
     private static char[] buildArray(int len) {
@@ -76,6 +105,6 @@ public class Rules {
     }
 
     public static String rulesToString() {
-        return Loc.rule4+Loc.rule1+": "+getMaxTries() + "\n"+Loc.rule2+": " + getCodeLenght() + "\n" + Loc.rule3+": " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
+        return Loc.rule4 + Loc.rule1 + ": " + getMaxTries() + "\n" + Loc.rule2 + ": " + getCodeLenght() + "\n" + Loc.rule3 + ": " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
     }
 }
