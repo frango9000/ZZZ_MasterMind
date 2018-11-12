@@ -100,7 +100,7 @@ public class Game {
             JFrame frame = new JFrame(Loc.decode1);
             deCodeIn = JOptionPane.showInputDialog(frame,
                     label + Loc.decode1+" \n"
-                    + Loc.decode2 + (+1) + " / " + Rules.getMaxTries() + " !\n"
+                    + Loc.decode2 + (tries+1) + " / " + Rules.getMaxTries() + " !\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + Loc.code3+ Rules.getOptionsStr() + "\n"
                     + Loc.decode3
