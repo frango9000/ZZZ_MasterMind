@@ -104,7 +104,7 @@ public class Game {
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + Loc.code3+ Rules.getOptionsStr() + "\n"
                     + Loc.decode3
-                    + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
+                    + Loc.decode4 + Rules.getOptionsStr() + " (P) (S)\n"
                     + tryLog);
         } while (!codeCheck(deCodeIn));
         return deCodeIn;
@@ -121,7 +121,7 @@ public class Game {
         JOptionPane.showMessageDialog(finalFrame,
                 finalLog
                 + "Log:\n"
-                + Loc.decode4 + Rules.getOptionsStr() + " perf semi\n"
+                + Loc.decode4 + Rules.getOptionsStr() + " (P) (S)\n"
                 + tryLog);
     }
 }

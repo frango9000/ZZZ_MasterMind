@@ -3,7 +3,7 @@ package MasterMind;
 public class Mastermind {
 
     public static void main(String[] args) {
-        Loc.eng();
+        Loc.esp();
         Menu.menuIntro();
         Menu.menuPickRuleset();
         do {
