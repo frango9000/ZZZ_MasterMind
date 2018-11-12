@@ -47,8 +47,11 @@ public class Game {
 
 
     public void startGame() {
+        if (Menu.pickRival()){
         code = new Code(insertCode());
-
+        }else
+            code = new Code();
+        
         do {
             Code deCode = new Code(insertDeCode(), code);
             incTries();

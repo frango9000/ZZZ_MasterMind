@@ -41,6 +41,7 @@ public class Rules {
     }
 
     public static char[] getOptionsArray() {
+        System.out.println(optionsArray);
         return optionsArray;
     }
 
@@ -66,7 +67,7 @@ public class Rules {
         return options;
     }
 
-    private static String buildString(int val) {
+    public static String buildString(int val) {
         String str = "";
         for (int i = 0; i < val; i++) {
             str = str + "X";
