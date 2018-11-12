@@ -17,8 +17,8 @@ public class Menu {
 
     public static void menuPickRuleset() {
         Rules.defaultRules();
-        String[] rulesets = {Loc.pick1, Loc.pick2};
-        int seleccion = JOptionPane.showOptionDialog(null, Loc.pick3+Loc.pick2 + Rules.rulesToString(), "MasterMind", 0, 3, null, rulesets, 0);
+        String[] rulesets = {Loc.edit1, Loc.pick2};
+        int seleccion = JOptionPane.showOptionDialog(null, Loc.pick1+Loc.pick2 + Rules.rulesToString(), "MasterMind", 0, 3, null, rulesets, 0);
 
         switch (seleccion) {
             case 0:
@@ -31,15 +31,23 @@ public class Menu {
 
     public static void menuNewRules() {
         int codeL, codeV, maxT;
+        String label = "";
+        JFrame frame = new JFrame(Loc.edit1);
         do {
-            JFrame frame = new JFrame(Loc.edit1);
-            maxT = Integer.parseInt(JOptionPane.showInputDialog(frame, Loc.edit2+Loc.rule1+" ( 2 - 99 ) : ", null));
-            codeL = Integer.parseInt(JOptionPane.showInputDialog(frame, Loc.edit2+Loc.rule2+" ( 2 - 15 ) : ", null));
-            codeV = Integer.parseInt(JOptionPane.showInputDialog(frame, Loc.edit2+Loc.rule3+" ( 2 - 15 ) : ", null));
-        } while (!Rules.verifyRules());
-        JFrame welcome = new JFrame(Loc.edit3);
-        Rules.editRules(codeL, codeV, maxT);
-        JOptionPane.showMessageDialog(welcome, Loc.edit4 + Rules.rulesToString());
+            maxT = Integer.parseInt(JOptionPane.showInputDialog(frame, label + Loc.edit2 + Loc.rule1 + " ( 2 - 99 ) : ", null));
+            label = Loc.code4 + "\n";
+        } while (!Rules.setMaxTries(maxT));
+        label="";
+        do {
+            codeL = Integer.parseInt(JOptionPane.showInputDialog(frame, label + Loc.edit2 + Loc.rule2 + " ( 2 - " + Rules.getMaxLength() + " ) : ", null));
+            label = Loc.code4 + "\n";
+        } while (!Rules.setCodeLenght(codeL));
+        label="";
+        do {
+            codeV = Integer.parseInt(JOptionPane.showInputDialog(frame, label + Loc.edit2 + Loc.rule3 + " ( 2 - " + Rules.getMaxValues() + " ) : ", null));
+            label = Loc.code4 + "\n";
+        } while (!Rules.setCodeValues(codeV));
+        JOptionPane.showMessageDialog(frame, Loc.edit4 + Rules.rulesToString());
     }
 
     public static boolean menuNewGame() {

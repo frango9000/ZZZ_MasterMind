@@ -27,13 +27,12 @@ public class Loc {
                 + "                    (P) : the number of matches in their correct position\n"
                 + "                    (S) : the number of matches in their incorrect position";
         
-        pick1 = "Edit Rules";
         pick2 = "Default ";
-        pick3 = "Pick Rule Set\n\n\b";
+        pick1 = "Pick Rule Set\n\n\b";
         
         edit1= "Edit Rules";
         edit2="Insert: ";
-        edit3="Custom Rules Valid";
+        edit3="Custom Rules Valid\n";
         edit4="Custom ";
                 
         rule1="Max Tries";
@@ -70,9 +69,8 @@ public class Loc {
                 + "                    (P) : el numero aciertos en su posicion correcta\n"
                 + "                    (S) : el numero aciertos en su posicion incorrecta";
         
-        pick1 = "Editar reglas";
-        pick2 = "Predefinidas ";
-        pick3 = "Elige las reglas\n\n\b";
+        pick2 = "MasterMind ";
+        pick1 = "Elige las reglas\n\n\b";
         
         edit1= "Editar reglas";
         edit2="Insertar: ";
