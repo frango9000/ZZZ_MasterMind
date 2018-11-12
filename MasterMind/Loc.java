@@ -10,7 +10,8 @@ package MasterMind;
  * @author fsancheztemprano
  */
 public class Loc {
-    public static String intro, pick1, pick2, pick3;
+    public static String intro, lang;
+    public static String pick1, pick2, pick3;
     public static String edit1, edit2, edit3, edit4;
     public static String newgame1, newgame2;
     public static String opo1, opo2, opo3;
@@ -18,8 +19,23 @@ public class Loc {
     public static String code1, code2, code3, code4;
     public static String decode1, decode2, decode3, decode4;
     public static String over1, over2, over3;
+    public static String[] langs =new String[]{"English", "Español"};
     
+    public static void pickLang(int i){
+        switch(i){
+            case 0:
+                eng();
+                break;
+            case 1:
+                esp();
+                break;
+            default:
+                eng();
+                break;                            
+        }
+    }
     public static void eng(){
+        lang="English";
         intro = "Welcome to MasterMind:\n"
                 + "                    In this game Player 1 inserts a code\n"
                 + "                    and Player 2 tries to crack it.\n"
@@ -62,6 +78,7 @@ public class Loc {
         over3="You failed cracking the code! (";
     }
     public static void esp(){
+        lang="Castellano";
         intro = "MasterMind:\n"
                 + "                    El jugador 1 introduce el codigo secreto\n"
                 + "                    y el jugador 2 intenta descifrarlo.\n"
