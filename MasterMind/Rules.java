@@ -76,6 +76,6 @@ public class Rules {
     }
 
     public static String rulesToString() {
-        return "Rules: \nMax Tries: " + getMaxTries() + "\nCode Lenght: " + getCodeLenght() + "\nCode Options: " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
+        return Loc.rule4+Loc.rule1+": "+getMaxTries() + "\n"+Loc.rule2+": " + getCodeLenght() + "\n" + Loc.rule3+": " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
     }
 }
