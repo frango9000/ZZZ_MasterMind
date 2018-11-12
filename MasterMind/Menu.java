@@ -12,7 +12,6 @@ public class Menu {
     public static void menuIntro() {
         JFrame welcome = new JFrame("MasterMind");
         JOptionPane.showMessageDialog(welcome,Loc.intro);
-
     }
 
     public static void menuPickRuleset() {
@@ -59,9 +58,7 @@ public class Menu {
                 return true;
             default:
                 return false;
-
         }
-
     }
 
     public static boolean pickRival() {
@@ -73,8 +70,12 @@ public class Menu {
                 return true;
             default:
                 return false;
-
         }
+    }
 
+    public static void menuPickLang() {
+        String[] opciones = Loc.langs;
+        int i = JOptionPane.showOptionDialog(null, Loc.opo3, "MasterMind", 0, 3, null, opciones, 1);
+        Loc.pickLang(i);
     }
 }
