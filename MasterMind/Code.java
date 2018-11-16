@@ -21,10 +21,11 @@ public class Code {
         Random rand = new Random();
         char[] randCode = new char[Rules.getCodeLenght()];
         String options = new String(Rules.getOptionsArray());
-        code = Rules.buildString(Rules.getCodeLenght());
+        code = Rules.buildString(Rules.getCodeLenght());                //code = "XXXX"
 
         for (int i = 1; i <= Rules.getCodeLenght(); i++) {
-            int randn = rand.nextInt(3);
+            int randn = rand.nextInt(options.length());                    //Lenght of String options = "ABCDEF"
+            System.out.println(randn);
             randCode[i - 1] = options.charAt(randn);
         }
         code = new String(randCode);
