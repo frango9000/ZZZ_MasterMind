@@ -24,8 +24,8 @@ public class Code {
         code = Rules.buildString(Rules.getCodeLenght());                //code = "XXXX"
 
         for (int i = 1; i <= Rules.getCodeLenght(); i++) {
-            int randn = rand.nextInt(options.length());                    //Lenght of String options = "ABCDEF"
-            System.out.println(randn);
+            int randn = rand.nextInt(options.length());                 //Lenght of String options = "ABCDEF"
+            if(Rules.DEBUG)System.out.println(randn);                   //DEBUG
             randCode[i - 1] = options.charAt(randn);
         }
         code = new String(randCode);
