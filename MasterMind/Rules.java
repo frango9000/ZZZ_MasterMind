@@ -18,6 +18,8 @@ public class Rules {
     private static char[] optionsArray;
     private static String optionsStr;
 
+    public static final boolean DEBUG = true;
+
     public static void defaultRules() {
         optionsArray = buildArray(codeValues);
         optionsStr = buildString(codeLenght);
