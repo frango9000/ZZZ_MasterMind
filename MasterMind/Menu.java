@@ -1,5 +1,6 @@
 package MasterMind;
 
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -59,7 +60,7 @@ public class Menu {
         }
     }
 
-    public static boolean pickRival() {
+    public static boolean menuPickRival() {
         String[] opciones = {Loc.opo1, Loc.opo2};
         int newg = JOptionPane.showOptionDialog(null, Loc.opo3, "MasterMind", 0, 0, null, opciones, 3);
 
@@ -75,5 +76,54 @@ public class Menu {
         String[] opciones = Loc.langs;
         int i = JOptionPane.showOptionDialog(null, Loc.opo3, "MasterMind", 0, 3, null, opciones, 3);
         Loc.pickLang(i);
+    }
+    
+    public static String menuInsertCode(Game game) {
+        String label = "";
+        String codeIn = "";
+        do {
+            codeIn = JOptionPane.showInputDialog(null,
+                    label
+                    + Loc.code1 + "\n"
+                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
+                    + Loc.code2 + Rules.getOptionsStr(),
+                    "MasterMind", 3);
+            label = Loc.err1;
+        } while (!game.codeCheck(codeIn));
+
+        return codeIn;
+    }
+
+    public static String menuInsertDeCode(Game game) {
+
+        String label = "";
+        String deCodeIn = "";
+        do {
+            deCodeIn = JOptionPane.showInputDialog(null,
+                    label
+                    + Loc.decode1 + "\n"
+                    + Loc.code2 + Rules.getOptionsStr() + "\n"
+                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
+                    + Loc.decode2 + (game.getTries() + 1) + " / " + Rules.getMaxTries() + " !\n\n"
+                    + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                    + game.getTryLog(),
+                    "MasterMind", 3);
+            label = Loc.err1;
+        } while (!game.codeCheck(deCodeIn));
+        return deCodeIn;
+    }
+
+    public static void menuGameOver(Game game,Code code, Code deCod) {
+        String finalLog;
+        if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
+            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
+        } else {
+            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
+        }
+        JOptionPane.showMessageDialog(null,
+                finalLog + "\n\n"
+                + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                + game.getTryLog(),
+                "MasterMind", 3);
     }
 }
