@@ -9,11 +9,14 @@ public class Game {
     private String tryLog;
     private Code code;
     private Code[] decodes;
+    
+    private int ui;          //0 console, 1 JOptionPane, 2 FX UI (to do) 
 
-    public Game() {
+    public Game(int ui) {
         tries = 0;
         tryLog = "";
         decodes = new Code[Rules.getMaxTries() + 1];
+        this.ui=ui;
     }
 
     public int getTries() {
@@ -41,7 +44,7 @@ public class Game {
     }
 
     public void startGame() {
-        if (Menu.menuPickRival()) {
+        if (pickRival()) {
             code = new Code(insertCode());
         } else {
             code = new Code();
@@ -57,7 +60,22 @@ public class Game {
             }
         } while (tries < Rules.getMaxTries());
 
-        Menu.menuGameOver(this, code, decodes[tries]);
+        gameOver();
+    }
+    public boolean pickRival(){
+        if(ui == 0){
+            return Console.consolePickRival();
+        }else {
+            return Menu.menuPickRival();
+        }        
+    }
+    
+    public void gameOver(){
+        if(ui == 0){
+            Console.consoleGameOver(this, code, decodes[tries]);
+        }else {
+            Menu.menuGameOver(this, code, decodes[tries]);
+        } 
     }
 
     public boolean codeCheck(String cod) {
@@ -73,11 +91,20 @@ public class Game {
         return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
     }
 
-    public String insertCode() {
-        return Menu.menuInsertCode(this);
+    public String insertCode() {        
+        if(ui == 0){
+            return Console.consoleInsertCode(this);
+        }else {
+            return Menu.menuInsertCode(this);
+        } 
     }
 
-    public String insertDeCode() {
-        return Menu.menuInsertDeCode(this);
+    public String insertDeCode() {        
+        if(ui == 0){
+            return Console.consoleInsertDeCode(this);
+        }else {
+            return Menu.menuInsertDeCode(this);
+        } 
+        
     }
 }
