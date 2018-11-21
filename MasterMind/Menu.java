@@ -1,7 +1,6 @@
 package MasterMind;
 
 import java.util.Arrays;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
