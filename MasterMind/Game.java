@@ -1,9 +1,4 @@
 package MasterMind;
-
-import java.util.Arrays;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author fsancheztemprano
@@ -46,7 +41,7 @@ public class Game {
     }
 
     public void startGame() {
-        if (Menu.pickRival()) {
+        if (Menu.menuPickRival()) {
             code = new Code(insertCode());
         } else {
             code = new Code();
@@ -62,7 +57,7 @@ public class Game {
             }
         } while (tries < Rules.getMaxTries());
 
-        gameOver(decodes[tries]);
+        Menu.menuGameOver(this, code, decodes[tries]);
     }
 
     public boolean codeCheck(String cod) {
@@ -79,51 +74,10 @@ public class Game {
     }
 
     public String insertCode() {
-        String label = "";
-        String codeIn = "";
-        do {
-            codeIn = JOptionPane.showInputDialog(null,
-                    label
-                    + Loc.code1 + "\n"
-                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.code2 + Rules.getOptionsStr(),
-                    "MasterMind", 3);
-            label = Loc.err1;
-        } while (!codeCheck(codeIn));
-
-        return codeIn;
+        return Menu.menuInsertCode(this);
     }
 
     public String insertDeCode() {
-
-        String label = "";
-        String deCodeIn = "";
-        do {
-            deCodeIn = JOptionPane.showInputDialog(null,
-                    label
-                    + Loc.decode1 + "\n"
-                    + Loc.code2 + Rules.getOptionsStr() + "\n"
-                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.decode2 + (tries + 1) + " / " + Rules.getMaxTries() + " !\n\n"
-                    + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
-                    + tryLog,
-                    "MasterMind", 3);
-            label = Loc.err1;
-        } while (!codeCheck(deCodeIn));
-        return deCodeIn;
-    }
-
-    public void gameOver(Code deCod) {
-        String finalLog;
-        if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
-            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
-        } else {
-            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
-        }
-        JOptionPane.showMessageDialog(null,
-                finalLog + "\n\n"
-                + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
-                + tryLog,
-                "MasterMind", 3);
+        return Menu.menuInsertDeCode(this);
     }
 }
