@@ -1,9 +1,4 @@
 package MasterMind;
-
-import java.util.Arrays;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author fsancheztemprano
@@ -14,11 +9,14 @@ public class Game {
     private String tryLog;
     private Code code;
     private Code[] decodes;
+    
+    private int ui;          //0 console, 1 JOptionPane, 2 FX UI (to do) 
 
-    public Game() {
+    public Game(int ui) {
         tries = 0;
         tryLog = "";
         decodes = new Code[Rules.getMaxTries() + 1];
+        this.ui=ui;
     }
 
     public int getTries() {
@@ -46,7 +44,7 @@ public class Game {
     }
 
     public void startGame() {
-        if (Menu.pickRival()) {
+        if (pickRival()) {
             code = new Code(insertCode());
         } else {
             code = new Code();
@@ -62,7 +60,22 @@ public class Game {
             }
         } while (tries < Rules.getMaxTries());
 
-        gameOver(decodes[tries]);
+        gameOver();
+    }
+    public boolean pickRival(){
+        if(ui == 0){
+            return Console.consolePickRival();
+        }else {
+            return Menu.menuPickRival();
+        }        
+    }
+    
+    public void gameOver(){
+        if(ui == 0){
+            Console.consoleGameOver(this, code, decodes[tries]);
+        }else {
+            Menu.menuGameOver(this, code, decodes[tries]);
+        } 
     }
 
     public boolean codeCheck(String cod) {
@@ -78,52 +91,20 @@ public class Game {
         return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
     }
 
-    public String insertCode() {
-        String label = "";
-        String codeIn = "";
-        do {
-            codeIn = JOptionPane.showInputDialog(null,
-                    label
-                    + Loc.code1 + "\n"
-                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.code2 + Rules.getOptionsStr(),
-                    "MasterMind", 3);
-            label = Loc.err1;
-        } while (!codeCheck(codeIn));
-
-        return codeIn;
+    public String insertCode() {        
+        if(ui == 0){
+            return Console.consoleInsertCode(this);
+        }else {
+            return Menu.menuInsertCode(this);
+        } 
     }
 
-    public String insertDeCode() {
-
-        String label = "";
-        String deCodeIn = "";
-        do {
-            deCodeIn = JOptionPane.showInputDialog(null,
-                    label
-                    + Loc.decode1 + "\n"
-                    + Loc.code2 + Rules.getOptionsStr() + "\n"
-                    + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.decode2 + (tries + 1) + " / " + Rules.getMaxTries() + " !\n\n"
-                    + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
-                    + tryLog,
-                    "MasterMind", 3);
-            label = Loc.err1;
-        } while (!codeCheck(deCodeIn));
-        return deCodeIn;
-    }
-
-    public void gameOver(Code deCod) {
-        String finalLog;
-        if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
-            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
-        } else {
-            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
-        }
-        JOptionPane.showMessageDialog(null,
-                finalLog + "\n\n"
-                + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
-                + tryLog,
-                "MasterMind", 3);
+    public String insertDeCode() {        
+        if(ui == 0){
+            return Console.consoleInsertDeCode(this);
+        }else {
+            return Menu.menuInsertDeCode(this);
+        } 
+        
     }
 }
