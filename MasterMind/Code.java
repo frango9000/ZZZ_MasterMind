@@ -21,7 +21,7 @@ public class Code {
         Random rand = new Random();
         char[] randCode = new char[Rules.getCodeLenght()];
         String options = new String(Rules.getOptionsArray());
-        code = Rules.buildString(Rules.getCodeLenght());                //code = "XXXX"
+        code = Rules.buildFormatString(Rules.getCodeLenght());                //code = "XXXX"
 
         for (int i = 1; i <= Rules.getCodeLenght(); i++) {
             int randn = rand.nextInt(options.length());                 //Lenght of String options = "ABCDEF"

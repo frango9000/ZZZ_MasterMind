@@ -17,6 +17,7 @@ public class Loc {
     public static String newgame1, newgame2;
     public static String opo1, opo2, opo3;
     public static String rule1, rule2, rule3, rule4;
+    public static String msg1, msg2, msg3, msg4;
     public static String code1, code2, err1;
     public static String decode1, decode2;
     public static String over1, over2, over3;
@@ -76,6 +77,11 @@ public class Loc {
         over1 = "Game Over!";
         over2 = "You cracked the code";
         over3 = "You failed cracking the code";
+
+        msg1 = "Max Tries";
+        msg2 = "Code Lenght";
+        msg3 = "Code Variables";
+        msg4 = "Rules: \n";
     }
 
     public static void esp() {
