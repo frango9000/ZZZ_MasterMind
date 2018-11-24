@@ -37,10 +37,10 @@ public class InsertCode extends Application {
 
         Text mastermind = new Text("MasterMind");
         mastermind.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastermind, 0, 1, 1, 1);
+        grid.add(mastermind, 0, 0, 1, 1);
 
 
-        Text format = new Text(Loc.code2 + ": " + Rules.);            //Format:
+        Text format = new Text(Loc.code2 + ": " + Rules.getFormatString());            //Format:
         format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
         grid.add(format, 0, 15);
 

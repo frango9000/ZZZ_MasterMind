@@ -53,13 +53,13 @@ public class PickRules extends Application {
 
         Text defaultrule1 = new Text(String.valueOf(Rules.getMaxTries()));
         defaultrule1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultrule1, 1, 5, 2, 1);
+        grid.add(defaultrule1, 2, 5, 2, 1);
         Text defaultrule2 = new Text(String.valueOf(Rules.getCodeLenght()));
         defaultrule2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultrule2, 1, 6, 2, 1);
+        grid.add(defaultrule2, 2, 6, 2, 1);
         Text defaultrule3= new Text(String.valueOf(Rules.getCodeValues()));
         defaultrule3.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultrule3, 1, 7, 2, 1);
+        grid.add(defaultrule3, 2, 7, 2, 1);
 
         Button btnEng = new Button(Loc.pick2);
         HBox hbBtnEng = new HBox(10);
