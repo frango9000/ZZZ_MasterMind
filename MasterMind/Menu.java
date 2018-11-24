@@ -85,7 +85,7 @@ public class Menu {
                     label
                     + Loc.code1 + "\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.code2 + Rules.getOptionsStr(),
+                    + Loc.code2 + Rules.getOptionsString(),
                     "MasterMind", 3);
             label = Loc.err1;
         } while (!game.codeCheck(codeIn));
@@ -101,10 +101,10 @@ public class Menu {
             deCodeIn = JOptionPane.showInputDialog(null,
                     label
                     + Loc.decode1 + "\n"
-                    + Loc.code2 + Rules.getOptionsStr() + "\n"
+                    + Loc.code2 + Rules.getOptionsString() + "\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + Loc.decode2 + (game.getTries() + 1) + " / " + Rules.getMaxTries() + " !\n\n"
-                    + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                    + Loc.decode2 + Rules.getOptionsString() + " (P) (S)\n"
                     + game.getTryLog(),
                     "MasterMind", 3);
             label = Loc.err1;
@@ -121,7 +121,7 @@ public class Menu {
         }
         JOptionPane.showMessageDialog(null,
                 finalLog + "\n\n"
-                + Loc.decode2 + Rules.getOptionsStr() + " (P) (S)\n"
+                + Loc.decode2 + Rules.getOptionsString() + " (P) (S)\n"
                 + game.getTryLog(),
                 "MasterMind", 3);
     }
