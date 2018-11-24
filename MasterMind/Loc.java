@@ -47,17 +47,17 @@ public class Loc {
                 + "                    (S) : the number of matches in their incorrect position";
 
         pick2 = "Default ";
-        pick1 = "Pick Rule Set\n\n\b";
+        pick1 = "Pick Rule Set";
 
         edit1 = "Edit Rules";
         edit2 = "Insert: ";
-        edit3 = "Custom Rules Valid\n";
+        edit3 = "Custom Rules Valid";
         edit4 = "Custom ";
 
         rule1 = "Max Tries";
         rule2 = "Code Lenght";
         rule3 = "Code Variables";
-        rule4 = "Rules: \n";
+        rule4 = "Rules:";
 
         newgame1 = "New Game";
         newgame2 = "Exit";
@@ -67,9 +67,9 @@ public class Loc {
         opo3 = "Pick Opponent";
 
         code1 = "Insert Secret Code:";
-        code2 = "Format: ";
+        code2 = "Format";
 
-        err1 = "Error, Try Again.\n";
+        err1 = "Error, Try Again.";
 
         decode1 = "Insert deCode";
         decode2 = "Turn: ";
@@ -80,8 +80,8 @@ public class Loc {
 
         msg1 = "Max Tries";
         msg2 = "Code Lenght";
-        msg3 = "Code Variables";
-        msg4 = "Rules: \n";
+        msg3 = "Accept";
+        msg4 = "Back";
     }
 
     public static void esp() {
