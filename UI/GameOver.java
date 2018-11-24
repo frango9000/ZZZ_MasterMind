@@ -44,7 +44,7 @@ public class GameOver extends Application {
         finish.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
         grid.add(finish, 0, 2);
 
-        Text format = new Text("hola");                                                             //Log
+        Text format = new Text("Try Log");                                                             //Log
         format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
         grid.add(format, 0, 3);
 
