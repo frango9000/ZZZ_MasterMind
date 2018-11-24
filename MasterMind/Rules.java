@@ -17,7 +17,7 @@ public class Rules {
 
     private static char[] optionsArray;
     private static String optionsString;
-    private static String valuesString;
+    private static String formatString;
 
 
     private static char[] fullArray = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'};
@@ -26,7 +26,7 @@ public class Rules {
 
     public static void defaultRules() {
         optionsArray = buildArray(codeValues);
-        optionsString = buildFormatString(codeLenght);
+        formatString = buildFormatString(codeLenght);
         optionsString = buildOptionsString(codeValues);
     }
 
@@ -35,8 +35,8 @@ public class Rules {
         codeValues = codeV;
         maxTries = maxT;
         optionsArray = buildArray(codeValues);
-        optionsString = buildFormatString(codeLenght);
-        valuesString = buildOptionsString(codeValues);
+        formatString = buildFormatString(codeLenght);
+        optionsString = buildOptionsString(codeValues);
     }
 
     public static int getCodeLenght() {        return codeLenght;    }
@@ -51,9 +51,9 @@ public class Rules {
 
     public static char[] getOptionsArray() {        return optionsArray;    }
 
-    public static String getOptionsString() {        return optionsString;    }
+    public static String getFormatString() {        return formatString;    }
 
-    public static String getValuesString() {        return valuesString;    }
+    public static String getOptionsString() {        return optionsString;    }
 
 
 
