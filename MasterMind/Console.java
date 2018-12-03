@@ -95,7 +95,7 @@ public class Console {
         String label = "";
         String codeIn = "";
         do {
-            System.out.println(label+ Loc.code1+ "\n"+ Arrays.toString(Rules.getOptionsArray()) +"\n"+ Loc.code2 + Rules.getOptionsString());
+            System.out.println(label+ Loc.code1+ "\n"+ Arrays.toString(Rules.getOptionsArray()) +"\n"+ Loc.code2 + Rules.getFormatString());
             codeIn = scan.next();
             label = Loc.err1;
         } while (!game.codeCheck(codeIn));
@@ -110,10 +110,10 @@ public class Console {
         do {
             System.out.println(label
                     + Loc.decode1 + "\n"
-                    + Loc.code2 + Rules.getOptionsString() + "\n"
+                    + Loc.code2 + Rules.getFormatString() + "\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
                     + Loc.decode2 + (game.getTries() + 1) + " / " + Rules.getMaxTries() + " !\n\n"
-                    + Loc.decode2 + Rules.getOptionsString() + " (P) (S)\n"
+                    + Loc.decode2 + Rules.getFormatString() + " (P) (S)\n"
                     + game.getTryLog());
             
             deCodeIn = scan.next();
@@ -131,7 +131,7 @@ public class Console {
         }
         System.out.println(
                 finalLog + "\n\n"
-                + Loc.decode2 + Rules.getOptionsString() + " (P) (S)\n"
+                + Loc.decode2 + Rules.getFormatString() + " (P) (S)\n"
                 + game.getTryLog());
     }
 }

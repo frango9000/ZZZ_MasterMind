@@ -12,6 +12,15 @@ public class Mastermind {
                 game.startGame();
             } while (Console.consoleNewGame());
             System.exit(0);
+        } else if (args.length >= 1 && args[0].equalsIgnoreCase("m")) {
+            Menu.menuPickLang();
+            Menu.menuIntro();
+            Menu.menuPickRuleset();
+            do {
+                Game game = new Game(1);
+                game.startGame();
+            } while (Menu.menuNewGame());
+            System.exit(0);
         } else {
             Menu.menuPickLang();
             Menu.menuIntro();

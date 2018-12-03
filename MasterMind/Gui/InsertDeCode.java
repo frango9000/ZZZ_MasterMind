@@ -1,4 +1,4 @@
-package UI;
+package MasterMind.Gui;
 import MasterMind.Loc;
 import MasterMind.Rules;
 import javafx.application.Application;

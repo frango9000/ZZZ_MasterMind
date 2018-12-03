@@ -10,7 +10,7 @@ public class Game {
     private Code code;
     private Code[] decodes;
     
-    private int ui;          //0 console, 1 JOptionPane, 2 FX UI (to do) 
+    private int ui;          //0 console, 1 JOptionPane, 2 FX Gui (to do)
 
     public Game(int ui) {
         tries = 0;
