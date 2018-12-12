@@ -10,6 +10,15 @@ import java.util.Scanner;
  */
 public class Console {
 
+    public static void consolePickLang() {
+        Scanner scan = new Scanner(System.in);
+        String[] opciones = Loc.langs;
+
+        for (int i=0; i<opciones.length; i++){
+            System.out.println(i+" : "+opciones[i]);
+        }
+        Loc.pickLang(scan.nextInt());
+    }
     public static void consoleIntro() {
         System.out.println( Loc.intro );
     }
@@ -80,16 +89,6 @@ public class Console {
         }
     }
 
-    public static void consolePickLang() {
-        Scanner scan = new Scanner(System.in);
-        String[] opciones = Loc.langs;        
-        
-        for (int i=0; i<opciones.length; i++){
-            System.out.println(i+" : "+opciones[i]);
-        }
-        Loc.pickLang(scan.nextInt());
-    }
-    
     public static String consoleInsertCode(Game game) {
         Scanner scan = new Scanner(System.in);
         String label = "";
