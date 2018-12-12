@@ -27,6 +27,9 @@ public class PickLang extends Application {
     }
 
     public static Scene scenePickLang(){
+        return new Scene(gridPickLang(), Ui.RESX, Ui.RESY);
+    }
+    public static GridPane gridPickLang(){
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.BASELINE_CENTER);
         grid.setHgap(10);
@@ -53,9 +56,7 @@ public class PickLang extends Application {
         Text scenetitle = new Text("MasterMind");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
-
-
-        return new Scene(grid, Ui.RESX, Ui.RESY);
+        return grid;
     }
 
 }

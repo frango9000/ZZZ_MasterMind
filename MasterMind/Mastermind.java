@@ -22,8 +22,9 @@ public class Mastermind {
             } while (Menu.menuNewGame());
             System.exit(0);
         } else {
-            Menu.menuPickLang();
-            Menu.menuIntro();
+            Ui ui = new Ui();
+            ui.uiPickLang(ui.stage);
+            ui.uiIntro(ui.stage);
             Menu.menuPickRuleset();
             do {
                 Game game = new Game(1);

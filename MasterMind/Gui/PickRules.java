@@ -2,6 +2,7 @@ package MasterMind.Gui;
 
 import MasterMind.Loc;
 import MasterMind.Rules;
+import MasterMind.Ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,7 +27,13 @@ public class PickRules extends Application {
 
 
         primaryStage.setTitle("Mastermind");
-
+        primaryStage.setScene(scenePickRules());
+        primaryStage.show();
+    }
+    public static Scene scenePickRules(){
+        return new Scene(gridPickRules(), Ui.RESX, Ui.RESY);
+    }
+    public static GridPane gridPickRules(){
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.BASELINE_CENTER);
         grid.setHgap(10);
@@ -67,7 +74,10 @@ public class PickRules extends Application {
         hbBtnEng.getChildren().add(btnEng);
         grid.add(hbBtnEng, 0, 10);
 
-        btnEng.setOnAction(actionEvent -> System.out.println(Loc.pick2));
+        btnEng.setOnAction(actionEvent -> {
+            System.out.println(Loc.pick2);
+            Ui.uiPickRules(0);
+        });
 
         Button btnSpa = new Button(Loc.edit1);
         HBox hbBtnSpa = new HBox(10);
@@ -75,15 +85,11 @@ public class PickRules extends Application {
         hbBtnSpa.getChildren().add(btnSpa);
         grid.add(hbBtnSpa, 1, 10);
 
-        btnSpa.setOnAction(actionEvent -> System.out.println(Loc.edit1));
-
-
-
-        Scene scene = new Scene(grid, 300, 300);
-        primaryStage.setScene(scene);
-
-
-        primaryStage.show();
+        btnSpa.setOnAction(actionEvent -> {
+            System.out.println(Loc.edit1);
+            Ui.uiPickRules(1);
+        });
+        return grid;
     }
 
 }

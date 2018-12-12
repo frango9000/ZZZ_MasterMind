@@ -29,6 +29,10 @@ public class Intro extends Application {
         primaryStage.show();
     }
     public static Scene sceneIntro(){
+        return new Scene(gridIntro(), Ui.RESX, Ui.RESY);
+    }
+
+    public static GridPane gridIntro(){
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.BASELINE_CENTER);
         //grid.setGridLinesVisible(true);
@@ -62,9 +66,6 @@ public class Intro extends Application {
             Stage stage = (Stage) grid.getScene().getWindow();
             stage.setScene(PickLang.scenePickLang());
         });
-
-
-        Scene scene = new Scene(grid, Ui.RESX, Ui.RESY);
-        return scene;
+        return grid;
     }
 }
