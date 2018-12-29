@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Rules {
 
-    private static int codeLenght = 4;
+    private static int codeLength = 4;
     private static int codeValues = 6;
     private static int maxTries = 10;
 
@@ -26,20 +26,20 @@ public class Rules {
 
     public static void defaultRules() {
         optionsArray = buildArray(codeValues);
-        formatString = buildFormatString(codeLenght);
+        formatString = buildFormatString(codeLength);
         optionsString = buildOptionsString(codeValues);
     }
 
     public static void editRules(int codeL, int codeV, int maxT) {
-        codeLenght = codeL;
+        codeLength = codeL;
         codeValues = codeV;
         maxTries = maxT;
         optionsArray = buildArray(codeValues);
-        formatString = buildFormatString(codeLenght);
+        formatString = buildFormatString(codeLength);
         optionsString = buildOptionsString(codeValues);
     }
 
-    public static int getCodeLenght() {        return codeLenght;    }
+    public static int getCodeLength() {        return codeLength;    }
 
     public static int getCodeValues() {        return codeValues;    }
 
@@ -59,8 +59,8 @@ public class Rules {
 
     public static boolean setCodeLenght(int codeL) {
         if (codeL > 1 && codeL <= maxLength) {
-            codeLenght = codeL;
-            optionsString = buildFormatString(codeLenght);
+            codeLength = codeL;
+            optionsString = buildFormatString(codeLength);
             return true;
         } else {
             return false;
@@ -109,6 +109,6 @@ public class Rules {
     }
 
     public static String rulesToString() {
-        return Loc.rule4 + Loc.rule1 + ": " + getMaxTries() + "\n" + Loc.rule2 + ": " + getCodeLenght() + "\n" + Loc.rule3 + ": " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
+        return Loc.rule4 + Loc.rule1 + ": " + getMaxTries() + "\n" + Loc.rule2 + ": " + getCodeLength() + "\n" + Loc.rule3 + ": " + getCodeValues() + "\n" + Arrays.toString(getOptionsArray());
     }
 }
