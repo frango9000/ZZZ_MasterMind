@@ -114,7 +114,7 @@ public class Menu {
 
     public static void menuGameOver(Game game,Code code, Code deCod) {
         String finalLog;
-        if (deCod.getPerfMatches() == Rules.getCodeLenght()) {
+        if (deCod.getPerfMatches() == Rules.getCodeLength()) {
             finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
         } else {
             finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
