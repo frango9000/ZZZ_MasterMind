@@ -19,6 +19,14 @@ public class Game {
         this.ui=ui;
     }
 
+    public Code getCode() {
+        return code;
+    }
+
+    public void setCode(Code code) {
+        this.code = code;
+    }
+
     public int getTries() {
         return tries;
     }
@@ -69,29 +77,8 @@ public class Game {
             return Menu.menuPickRival();
         }        
     }
-    
-    public void gameOver(){
-        if(ui == 0){
-            Console.consoleGameOver(this, code, decodes[tries]);
-        }else {
-            Menu.menuGameOver(this, code, decodes[tries]);
-        } 
-    }
 
-    public boolean codeCheck(String cod) {
-        int codeCheck = 0;
-        char[] ar = Rules.getOptionsArray();
-        for (int i = 0; i < ar.length; i++) {
-            for (int j = 0; j < cod.length(); j++) {
-                if (cod.charAt(j) == ar[i]) {
-                    codeCheck++;
-                }
-            }
-        }
-        return cod.length() == Rules.getCodeLenght() && codeCheck == Rules.getCodeLenght();
-    }
-
-    public String insertCode() {        
+    public String insertCode() {
         if(ui == 0){
             return Console.consoleInsertCode(this);
         }else {
@@ -106,5 +93,13 @@ public class Game {
             return Menu.menuInsertDeCode(this);
         } 
         
+    }
+
+    public void gameOver(){
+        if(ui == 0){
+            Console.consoleGameOver(this, code, decodes[tries]);
+        }else {
+            Menu.menuGameOver(this, code, decodes[tries]);
+        }
     }
 }

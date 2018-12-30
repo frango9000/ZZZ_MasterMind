@@ -97,7 +97,7 @@ public class Console {
             System.out.println(label+ Loc.code1+ "\n"+ Arrays.toString(Rules.getOptionsArray()) +"\n"+ Loc.code2 + Rules.getFormatString());
             codeIn = scan.next();
             label = Loc.err1;
-        } while (!game.codeCheck(codeIn));
+        } while (!Code.codeCheck(codeIn));
 
         return codeIn;
     }
@@ -117,7 +117,7 @@ public class Console {
             
             deCodeIn = scan.next();
             label = Loc.err1;
-        } while (!game.codeCheck(deCodeIn));
+        } while (!Code.codeCheck(deCodeIn));
         return deCodeIn;
     }
 

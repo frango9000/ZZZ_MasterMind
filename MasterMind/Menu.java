@@ -88,7 +88,7 @@ public class Menu {
                     + Loc.code2 + Rules.getFormatString(),
                     "MasterMind", 3);
             label = Loc.err1;
-        } while (!game.codeCheck(codeIn));
+        } while (!Code.codeCheck(codeIn));
 
         return codeIn;
     }
@@ -108,7 +108,7 @@ public class Menu {
                     + game.getTryLog(),
                     "MasterMind", 3);
             label = Loc.err1;
-        } while (!game.codeCheck(deCodeIn));
+        } while (!Code.codeCheck(deCodeIn));
         return deCodeIn;
     }
 

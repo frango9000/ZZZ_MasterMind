@@ -89,4 +89,16 @@ public class Code {
         return matches;
     }
 
+    public static boolean codeCheck(String cod) {
+        int codeCheck = 0;
+        char[] ar = Rules.getOptionsArray();
+        for (int i = 0; i < ar.length; i++) {
+            for (int j = 0; j < cod.length(); j++) {
+                if (cod.charAt(j) == ar[i]) {
+                    codeCheck++;
+                }
+            }
+        }
+        return cod.length() == Rules.getCodeLength() && codeCheck == Rules.getCodeLength();
+    }
 }

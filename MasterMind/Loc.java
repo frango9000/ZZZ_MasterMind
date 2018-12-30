@@ -94,7 +94,7 @@ public class Loc {
                 + "                    (S) : el numero aciertos en su posicion incorrecta";
 
         pick2 = "MasterMind ";
-        pick1 = "Elige las reglas\n\n\b";
+        pick1 = "Elige las reglas";
 
         edit1 = "Editar reglas";
         edit2 = "Insertar: ";
@@ -104,7 +104,7 @@ public class Loc {
         rule1 = "Max Intentos";
         rule2 = "Longitud del Codigo";
         rule3 = "Cantidad de Variables";
-        rule4 = "Reglas: \n";
+        rule4 = "Reglas:";
 
         newgame1 = "Nuevo Juego";
         newgame2 = "Salir";
@@ -116,7 +116,7 @@ public class Loc {
         code1 = "Inserta Codigo Secreto:";
         code2 = "Formato: ";
 
-        err1 = "Error, intentalo de nuevo.\n";
+        err1 = "Error, intentalo de nuevo.";
 
         decode1 = "Inserta deCode";
         decode2 = "Turno: ";
@@ -124,6 +124,11 @@ public class Loc {
         over1 = "Game Over!";
         over2 = "Descodificaste el codigo! Has Ganado! (";
         over3 = "Superado limite de intentos! Has perdido! (";
+
+        msg1 = "Intentos Maximos";
+        msg2 = "Longitud del Codigo";
+        msg3 = "Aceptar";
+        msg4 = "Atras";
     }
 
 }
