@@ -55,7 +55,7 @@ public class Loc {
         edit4 = "Custom ";
 
         rule1 = "Max Tries";
-        rule2 = "Code Lenght";
+        rule2 = "Code Length";
         rule3 = "Code Variables";
         rule4 = "Rules:";
 
@@ -79,7 +79,7 @@ public class Loc {
         over3 = "You failed cracking the code";
 
         msg1 = "Max Tries";
-        msg2 = "Code Lenght";
+        msg2 = "Code Length";
         msg3 = "Accept";
         msg4 = "Back";
     }

@@ -55,7 +55,7 @@ public class Game {
             incTries();
             decodes[tries] = deCode;
             updateLog(getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
-            if (deCode.getPerfMatches() >= Rules.getCodeLenght()) {
+            if (deCode.getPerfMatches() >= Rules.getCodeLength()) {
                 break;
             }
         } while (tries < Rules.getMaxTries());

@@ -19,12 +19,12 @@ public class Code {
 
     public Code() {
         Random rand = new Random();
-        char[] randCode = new char[Rules.getCodeLenght()];
+        char[] randCode = new char[Rules.getCodeLength()];
         String options = new String(Rules.getOptionsArray());
-        code = Rules.buildFormatString(Rules.getCodeLenght());                //code = "XXXX"
+        code = Rules.buildFormatString(Rules.getCodeLength());                //code = "XXXX"
 
-        for (int i = 1; i <= Rules.getCodeLenght(); i++) {
-            int randn = rand.nextInt(options.length());                 //Lenght of String options = "ABCDEF"
+        for (int i = 1; i <= Rules.getCodeLength(); i++) {
+            int randn = rand.nextInt(options.length());                 //Length of String options = "ABCDEF"
             if(Rules.DEBUG)System.out.println(randn);                   //DEBUG
             randCode[i - 1] = options.charAt(randn);
         }
@@ -38,9 +38,9 @@ public class Code {
     public Code(String code, Code cod) {
         this.code = code;
 
-        codeChecks = new boolean[Rules.getCodeLenght() + 1];
+        codeChecks = new boolean[Rules.getCodeLength() + 1];
         Arrays.fill(codeChecks, Boolean.FALSE);
-        deCodeChecks = new boolean[Rules.getCodeLenght() + 1];
+        deCodeChecks = new boolean[Rules.getCodeLength() + 1];
         Arrays.fill(deCodeChecks, Boolean.FALSE);
 
         perfMatches = perfCheck(cod);
