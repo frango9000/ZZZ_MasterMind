@@ -71,7 +71,6 @@ public class Code {
         }
         return matches;
     }
-
     private int semiCheck(Code cod) {
         int matches = 0;
         for (int i = 0; i < this.code.length(); i++) {

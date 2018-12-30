@@ -34,27 +34,17 @@ public class PickRival extends Application {
 
         GridPane grid = Ui.uiGridPane();
 
-        Text pickRivalTitle = new Text("Pick Rival: ");
-        pickRivalTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(pickRivalTitle, 0, 8, 2, 1);
+        Ui.addText(grid, "Pick Rival: ", 14, 0, 8, 2, 1);
 
-
-        Button aiButton = new Button("AI");
-        HBox hbAiButton = Ui.uiButton(10, aiButton);
-        grid.add(hbAiButton, 0, 14);
-
+        Button aiButton = Ui.addButton(grid, "AI", 0, 14);
         aiButton.setOnAction(actionEvent -> {
             System.out.println("1 Player");
-            //
         });
 
-        Button humanButton = new Button("Human");
-        HBox hbHumanButton = Ui.uiButton(10, humanButton);
-        grid.add(hbHumanButton, 1, 14);
-
+        Button humanButton = Ui.addButton(grid, "Human", 1, 14);
         humanButton.setOnAction(actionEvent -> {
             System.out.println("2 Player");
-            //
+            Ui.setScene(InsertCode.sceneInsertCode(), grid);
         });
         return grid;
     }

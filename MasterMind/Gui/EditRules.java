@@ -37,40 +37,17 @@ public class EditRules extends Application {
     public static GridPane gridEditRules() {
         GridPane grid = Ui.uiGridPane();
 
-        Text editRuleSet = new Text(Loc.edit1 + ":");
-        editRuleSet.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(editRuleSet, 0, 4, 2, 1);
+        Ui.addText(grid, Loc.edit1 + ":", 14, 0,4,2,1);
 
-        Text rule1 = new Text(Loc.rule1);
-        rule1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule1, 0, 5);
+        Ui.addText(grid, Loc.rule1, 12, 0,5);
+        Ui.addText(grid, Loc.rule1, 12, 0,6);
+        Ui.addText(grid, Loc.rule1, 12, 0,7);
 
-        Text rule2 = new Text(Loc.rule2);
-        rule2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule2, 0, 6);
+        TextField setRuleField1 = Ui.addTextField(grid, String.valueOf(Rules.getMaxTries()), 1, 5);
+        TextField setRuleField2 = Ui.addTextField(grid, String.valueOf(Rules.getCodeValues()), 1, 6);
+        TextField setRuleField3 = Ui.addTextField(grid, String.valueOf(Rules.getCodeLength()), 1, 7);
 
-        Text rule3 = new Text(Loc.rule3);
-        rule3.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule3, 0, 7);
-
-
-        TextField setRuleField1 = new TextField();
-        setRuleField1.appendText(String.valueOf(Rules.getMaxTries()));
-        grid.add(setRuleField1, 1, 5);
-
-        TextField setRuleField2 = new TextField();
-        setRuleField2.appendText(String.valueOf(Rules.getCodeValues()));
-        grid.add(setRuleField2, 1, 6);
-
-        TextField setRuleField3 = new TextField();
-        setRuleField3.appendText(String.valueOf(Rules.getCodeLength()));
-        grid.add(setRuleField3, 1, 7);
-
-
-        Button buttonEditRules = new Button(Loc.msg3);
-        HBox hbButtonEditRules = Ui.uiButton(10, buttonEditRules);
-        grid.add(hbButtonEditRules, 1, 11, 2, 1);
-
+        Button buttonEditRules = Ui.addOkButton(grid,1,11,2,1);
         buttonEditRules.setOnAction(actionEvent -> {
             System.out.println("OK");
             if (Ui.isInteger(setRuleField1.getCharacters().toString()) && Ui.isInteger(setRuleField2.getCharacters().toString()) && Ui.isInteger(setRuleField3.getCharacters().toString())) {

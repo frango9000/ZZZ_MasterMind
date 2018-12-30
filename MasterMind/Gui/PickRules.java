@@ -37,47 +37,24 @@ public class PickRules extends Application {
     public static GridPane gridPickRules() {
         GridPane grid = Ui.uiGridPane();
 
-        Text pickRuleSet = new Text(Loc.pick1 + ":");
-        pickRuleSet.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(pickRuleSet, 0, 4, 2, 1);
+        Ui.addText(grid, Loc.pick1 + ":", 14,0, 1, 2, 1);
 
-        Text rule1 = new Text(Loc.rule1);
-        rule1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule1, 0, 5, 2, 1);
-        Text rule2 = new Text(Loc.rule2);
-        rule2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule2, 0, 6, 2, 1);
-        Text rule3 = new Text(Loc.rule3);
-        rule3.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(rule3, 0, 7, 2, 1);
+        Ui.addText(grid, Loc.rule1 + ":", 12,0, 5, 2, 1);
+        Ui.addText(grid, Loc.rule2 + ":", 12,0, 6, 2, 1);
+        Ui.addText(grid, Loc.rule3 + ":", 12,0, 7, 2, 1);
 
-        Text defaultRule1 = new Text(String.valueOf(Rules.getMaxTries()));
-        defaultRule1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultRule1, 2, 5, 2, 1);
-        GridPane.setHalignment(defaultRule1, HPos.RIGHT);
-        Text defaultRule2 = new Text(String.valueOf(Rules.getCodeLength()));
-        defaultRule2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultRule2, 2, 6, 2, 1);
-        GridPane.setHalignment(defaultRule2, HPos.RIGHT);
-        Text defaultRule3 = new Text(String.valueOf(Rules.getCodeValues()));
-        defaultRule3.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
-        grid.add(defaultRule3, 2, 7, 2, 1);
-        GridPane.setHalignment(defaultRule3, HPos.RIGHT);
+        Ui.addText(grid, String.valueOf(Rules.getMaxTries()), 12,2, 5, 2, 1, HPos.RIGHT);
+        Ui.addText(grid, String.valueOf(Rules.getCodeLength()), 12,2, 6, 2, 1, HPos.RIGHT);
+        Ui.addText(grid, String.valueOf(Rules.getCodeValues()), 12,2, 7, 2, 1, HPos.RIGHT);
 
-        Button editButton = new Button(Loc.edit1);//Edit
-        HBox hbEditButton = Ui.uiButton(10, editButton);
-        grid.add(hbEditButton, 0, 14);
-
+        Button editButton = Ui.addButton(grid, Loc.edit1, 0, 14);//Edit
         editButton.setOnAction(actionEvent -> {
             System.out.println(Loc.edit1);
             Stage stage = (Stage) grid.getScene().getWindow();
             stage.setScene(EditRules.sceneEditRules());
         });
 
-        Button okButton = new Button(Loc.msg3);//Accept
-        HBox hbOkButton = Ui.uiButton(10, okButton);
-        grid.add(hbOkButton, 3, 14);
-
+        Button okButton = Ui.addButton(grid, Loc.msg3, 3, 14);//Accept
         okButton.setOnAction(actionEvent -> {
             System.out.println(Loc.pick2);
             Stage stage = (Stage) grid.getScene().getWindow();

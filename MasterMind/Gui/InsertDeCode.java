@@ -1,7 +1,6 @@
 package MasterMind.Gui;
-import MasterMind.Loc;
-import MasterMind.Rules;
-import MasterMind.Ui;
+
+import MasterMind.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,31 +28,56 @@ public class InsertDeCode extends Application {
         primaryStage.setScene(sceneInsertDeCode());
         primaryStage.show();
     }
-        public static Scene sceneInsertDeCode(){ return new Scene(gridInsertDeCode(), Ui.RESX, Ui.RESY);}
-        public static GridPane gridInsertDeCode(){
+
+    public static Scene sceneInsertDeCode() {
+        return new Scene(gridInsertDeCode(), Ui.RESX, Ui.RESY);
+    }
+
+    public static Scene sceneInsertDeCode(Game game) {
+        return new Scene(gridInsertDeCode(game), Ui.RESX, Ui.RESY);
+    }
+
+    public static GridPane gridInsertDeCode() {
 
         GridPane grid = Ui.uiGridPane();
 
+        Ui.addText(grid, "TryLog", 14, 0, 3);
 
-        Text log = new Text( "TryLog");                                       //Try Log
-        log.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(log, 0, 3);
+        Ui.addText(grid, Loc.code2 + ": " + Rules.getFormatString(), 14, 0, 15);
 
-        Text format = new Text(Loc.code2 + ": " + Rules.getFormatString());            //Format:
-        format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(format, 0, 15);
+        TextField introDeCode = Ui.addTextField(grid, 0, 16);
 
-        TextField userTextField = new TextField();
-        grid.add(userTextField, 0, 16);
+        Button okButton = Ui.addOkButton(grid, 1, 16, 2, 1);
+        okButton.setOnAction(actionEvent -> {
+            System.out.println(Loc.msg3);
+            //
+        });
+        return grid;
+    }
 
-            Button okButton = new Button(Loc.msg3);
-            HBox hbOkButton = Ui.uiButton(10, okButton);
-            grid.add(hbOkButton, 1, 16, 2, 1);
+    public static GridPane gridInsertDeCode(Game game) {
 
-            okButton.setOnAction(actionEvent -> {
-                System.out.println(Loc.msg3);
-                //
-            });
+        GridPane grid = gridInsertDeCode();
+
+        TextField introDeCode = Ui.addTextField(grid, 0, 16);
+
+        Button okButton = Ui.addOkButton(grid, 1, 16, 2, 1);
+        okButton.setOnAction(actionEvent -> {
+            System.out.println(Loc.msg3);
+            //
+            if (Code.codeCheck(introDeCode.getCharacters().toString())) {
+                System.out.println("valid");
+
+                Code deCode = new Code(introDeCode.getCharacters().toString(), game.getCode());
+
+                game.incTries();
+                game.setDecodes(deCode, game.getTries());
+                game.updateLog(game.getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
+                if (deCode.getPerfMatches() >= Rules.getCodeLength()) {
+                    Ui.setScene(GameOver.sceneGameOver(), grid);
+                }
+            }
+        });
         return grid;
     }
 }

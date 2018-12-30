@@ -9,7 +9,20 @@ public class Game {
     private String tryLog;
     private Code code;
     private Code[] decodes;
-    
+
+    public Code[] getDecodes() {
+        return decodes;
+    }
+    public void setDecodes(Code[] decodes) {
+        this.decodes = decodes;
+    }
+    public Code getDecodes(int index) {
+        return decodes[index];
+    }
+    public void setDecodes(Code deCode, int index) {
+        this.decodes[index] = deCode;
+    }
+
     private int ui;          //0 console, 1 JOptionPane, 2 FX Gui (to do)
 
     public Game(int ui) {
@@ -18,6 +31,14 @@ public class Game {
         decodes = new Code[Rules.getMaxTries() + 1];
         this.ui=ui;
     }
+    public Game(Code code) {
+        this.code = code;
+        tries = 0;
+        tryLog = "";
+        decodes = new Code[Rules.getMaxTries() + 1];
+        this.ui = 2;
+    }
+
 
     public Code getCode() {
         return code;

@@ -36,18 +36,9 @@ public class Intro extends Application {
     public static GridPane gridIntro() {
         GridPane grid = Ui.uiGridPane();
 
-        Text finish = new Text(Loc.intro);                                       //Game Over
-        finish.setFont(Font.font("Tahoma", FontWeight.NORMAL, 8));
-        grid.add(finish, 0, 2);
+        Ui.addText(grid, Loc.intro, 8, 0, 2);
 
-//        Text format = new Text("Hecho por Franisco J Sanchez T\nfrango9000@gmail.com");      //Log
-//        format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 5));
-//        grid.add(format, 0, 3);
-
-
-        Button okButton = new Button("OK");
-        HBox hbOkButton = Ui.uiButton(10, okButton);
-        grid.add(hbOkButton, 0, 14);
+        Button okButton = Ui.addButton(grid, "OK", 0, 14);
 
         okButton.setOnAction(actionEvent -> {
             Rules.defaultRules();
