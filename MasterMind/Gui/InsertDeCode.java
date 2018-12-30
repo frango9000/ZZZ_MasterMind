@@ -1,6 +1,7 @@
 package MasterMind.Gui;
 import MasterMind.Loc;
 import MasterMind.Rules;
+import MasterMind.Ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,18 +26,13 @@ public class InsertDeCode extends Application {
         Loc.eng();
         Rules.defaultRules();
         primaryStage.setTitle("Mastermind");
+        primaryStage.setScene(sceneInsertDeCode());
+        primaryStage.show();
+    }
+        public static Scene sceneInsertDeCode(){ return new Scene(gridInsertDeCode(), Ui.RESX, Ui.RESY);}
+        public static GridPane gridInsertDeCode(){
 
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        //grid.setGridLinesVisible(true);
-
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
-
-        Text mastermind = new Text("MasterMind");
-        mastermind.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastermind, 0, 1, 1, 1);
+        GridPane grid = Ui.uiGridPane();
 
 
         Text log = new Text( "TryLog");                                       //Try Log
@@ -47,29 +43,17 @@ public class InsertDeCode extends Application {
         format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
         grid.add(format, 0, 15);
 
-
-
         TextField userTextField = new TextField();
         grid.add(userTextField, 0, 16);
 
+            Button okButton = new Button(Loc.msg3);
+            HBox hbOkButton = Ui.uiButton(10, okButton);
+            grid.add(hbOkButton, 1, 16, 2, 1);
 
-
-        Button btnEng = new Button(Loc.msg3);
-        HBox hbBtnEng = new HBox(10);
-        hbBtnEng.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnEng.getChildren().add(btnEng);
-        grid.add(hbBtnEng, 1, 16, 2, 1);
-
-        btnEng.setOnAction(actionEvent -> System.out.println(Loc.msg3));
-
-
-
-
-        Scene scene = new Scene(grid, 300, 300);
-        primaryStage.setScene(scene);
-
-
-        primaryStage.show();
-
+            okButton.setOnAction(actionEvent -> {
+                System.out.println(Loc.msg3);
+                //
+            });
+        return grid;
     }
 }

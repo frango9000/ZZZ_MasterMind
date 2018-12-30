@@ -1,10 +1,11 @@
 package MasterMind.Gui;
 
+import MasterMind.Game;
 import MasterMind.Loc;
 import MasterMind.Rules;
+import MasterMind.Ui;
+import MasterMind.Code;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,48 +27,40 @@ public class InsertCode extends Application {
         Loc.eng();
         Rules.defaultRules();
         primaryStage.setTitle("Mastermind");
+        primaryStage.setScene(sceneInsertCode());
+        primaryStage.show();
+    }
 
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        //grid.setGridLinesVisible(true);
+    public static Scene sceneInsertCode() {
+        return new Scene(gridInsertCode(), Ui.RESX, Ui.RESX);
+    }
 
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
-
-        Text mastermind = new Text("MasterMind");
-        mastermind.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastermind, 0, 0, 1, 1);
-
+    public static GridPane gridInsertCode() {
+        GridPane grid = Ui.uiGridPane();
 
         Text format = new Text(Loc.code2 + ": " + Rules.getFormatString());            //Format:
         format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
         grid.add(format, 0, 15);
 
+        TextField introCode = new TextField();
+        grid.add(introCode, 0, 16);
 
+        Button okButton = new Button(Loc.msg3);
+        HBox hbOkButton = Ui.uiButton(10, okButton);
+        grid.add(hbOkButton, 1, 16, 2, 1);
 
-        TextField userTextField = new TextField();
-        grid.add(userTextField, 0, 16);
+        okButton.setOnAction(actionEvent -> {
+            System.out.println(introCode.getCharacters());
 
+            if(Code.codeCheck(introCode.getCharacters().toString())){
+                Code code = new Code(introCode.getCharacters().toString());
+                Game game = new Game(2);
+                game.setCode(code);
+                System.out.println("valid");
 
+            }
 
-        Button btnEng = new Button(Loc.msg3);
-        HBox hbBtnEng = new HBox(10);
-        hbBtnEng.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnEng.getChildren().add(btnEng);
-        grid.add(hbBtnEng, 1, 16, 2, 1);
-
-        btnEng.setOnAction(actionEvent -> System.out.println(Loc.msg3));
-
-
-
-
-        Scene scene = new Scene(grid, 300, 300);
-        primaryStage.setScene(scene);
-
-
-        primaryStage.show();
-
+        });
+        return grid;
     }
 }
-

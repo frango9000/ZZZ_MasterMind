@@ -1,5 +1,6 @@
 package MasterMind.Gui;
 
+import MasterMind.Loc;
 import MasterMind.Ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -26,38 +27,33 @@ public class PickLang extends Application {
         primaryStage.show();
     }
 
-    public static Scene scenePickLang(){
+    public static Scene scenePickLang() {
         return new Scene(gridPickLang(), Ui.RESX, Ui.RESY);
     }
-    public static GridPane gridPickLang(){
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
 
-        Button btnEng = new Button("English");
-        HBox hbBtnEng = new HBox(10);
-        hbBtnEng.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnEng.getChildren().add(btnEng);
-        grid.add(hbBtnEng, 0, 10);
+    public static GridPane gridPickLang() {
+        GridPane grid = Ui.uiGridPane();
 
-        btnEng.setOnAction(actionEvent -> System.out.println("English"));
+        Button engButton = new Button("English");
+        HBox hbEngButton = Ui.uiButton(10, engButton);
+        grid.add(hbEngButton, 0, 10);
 
-        Button btnSpa = new Button("Español");
-        HBox hbBtnSpa = new HBox(10);
-        hbBtnSpa.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnSpa.getChildren().add(btnSpa);
-        grid.add(hbBtnSpa, 1, 10);
+        engButton.setOnAction(actionEvent -> {
+            Loc.eng();
+            Stage stage = (Stage) grid.getScene().getWindow();
+            stage.setScene(Intro.sceneIntro());
+        });
 
-        btnSpa.setOnAction(actionEvent -> System.out.println("Español"));
+        Button espButton = new Button("Español");
+        HBox hbEspButton = Ui.uiButton(10, espButton);
+        grid.add(hbEspButton, 1, 10);
 
+        espButton.setOnAction(actionEvent -> {
+            Loc.esp();
+            Stage stage = (Stage) grid.getScene().getWindow();
+            stage.setScene(Intro.sceneIntro());
+        });
 
-        Text scenetitle = new Text("MasterMind");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
         return grid;
     }
-
 }
-

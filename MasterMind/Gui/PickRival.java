@@ -1,5 +1,6 @@
 package MasterMind.Gui;
 
+import MasterMind.Ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,47 +22,40 @@ public class PickRival extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Mastermind");
-
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
-
-        Text mastertitle = new Text("MasterMind");
-        mastertitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastertitle, 0, 0, 2, 1);
-
-        Text picklangtitle = new Text("Pick Rival: ");
-        picklangtitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(picklangtitle, 0, 8, 2, 1);
-
-
-
-        Button btnEng = new Button("AI");
-        HBox hbBtnEng = new HBox(10);
-        hbBtnEng.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnEng.getChildren().add(btnEng);
-        grid.add(hbBtnEng, 0, 10);
-
-        btnEng.setOnAction(actionEvent -> System.out.println("1 Player"));
-
-        Button btnSpa = new Button("2 Player");
-        HBox hbBtnSpa = new HBox(10);
-        hbBtnSpa.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnSpa.getChildren().add(btnSpa);
-        grid.add(hbBtnSpa, 1, 10);
-
-        btnSpa.setOnAction(actionEvent -> System.out.println("2 Player"));
-
-
-
-        Scene scene = new Scene(grid, 300, 300);
-        primaryStage.setScene(scene);
-
-
+        primaryStage.setScene(scenePickRival());
         primaryStage.show();
     }
 
-}
+    public static Scene scenePickRival() {
+        return new Scene(gridPickRival(), Ui.RESX, Ui.RESY);
+    }
 
+    public static GridPane gridPickRival() {
+
+        GridPane grid = Ui.uiGridPane();
+
+        Text pickRivalTitle = new Text("Pick Rival: ");
+        pickRivalTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+        grid.add(pickRivalTitle, 0, 8, 2, 1);
+
+
+        Button aiButton = new Button("AI");
+        HBox hbAiButton = Ui.uiButton(10, aiButton);
+        grid.add(hbAiButton, 0, 14);
+
+        aiButton.setOnAction(actionEvent -> {
+            System.out.println("1 Player");
+            //
+        });
+
+        Button humanButton = new Button("Human");
+        HBox hbHumanButton = Ui.uiButton(10, humanButton);
+        grid.add(hbHumanButton, 1, 14);
+
+        humanButton.setOnAction(actionEvent -> {
+            System.out.println("2 Player");
+            //
+        });
+        return grid;
+    }
+}

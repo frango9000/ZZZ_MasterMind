@@ -1,4 +1,5 @@
 package MasterMind.Gui;
+
 import MasterMind.Loc;
 import MasterMind.Rules;
 import MasterMind.Ui;
@@ -23,48 +24,35 @@ public class Intro extends Application {
     @Override
     public void start(Stage primaryStage) {
         Loc.eng();
-        Rules.defaultRules();
         primaryStage.setTitle("Mastermind");
         primaryStage.setScene(sceneIntro());
         primaryStage.show();
     }
-    public static Scene sceneIntro(){
+
+    public static Scene sceneIntro() {
         return new Scene(gridIntro(), Ui.RESX, Ui.RESY);
     }
 
-    public static GridPane gridIntro(){
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        //grid.setGridLinesVisible(true);
-
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
-
-        Text mastermind = new Text("MasterMind");
-        mastermind.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastermind, 0, 1, 1, 1);
-
+    public static GridPane gridIntro() {
+        GridPane grid = Ui.uiGridPane();
 
         Text finish = new Text(Loc.intro);                                       //Game Over
-        finish.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+        finish.setFont(Font.font("Tahoma", FontWeight.NORMAL, 8));
         grid.add(finish, 0, 2);
 
-        Text format = new Text("Hecho por Franisco J Sanchez T\nfrango9000@gmail.com");      //Log
-        format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(format, 0, 3);
+//        Text format = new Text("Hecho por Franisco J Sanchez T\nfrango9000@gmail.com");      //Log
+//        format.setFont(Font.font("Tahoma", FontWeight.NORMAL, 5));
+//        grid.add(format, 0, 3);
 
 
-        Button quit = new Button(Loc.msg3);
-        HBox hbQuit = new HBox(10);
-        hbQuit.setAlignment(Pos.BOTTOM_CENTER);
-        hbQuit.getChildren().add(quit);
-        grid.add(hbQuit, 0, 24);
+        Button okButton = new Button("OK");
+        HBox hbOkButton = Ui.uiButton(10, okButton);
+        grid.add(hbOkButton, 0, 14);
 
-        quit.setOnAction(actionEvent -> {
-            System.out.println("OK");
+        okButton.setOnAction(actionEvent -> {
+            Rules.defaultRules();
             Stage stage = (Stage) grid.getScene().getWindow();
-            stage.setScene(PickLang.scenePickLang());
+            stage.setScene(PickRules.scenePickRules());
         });
         return grid;
     }

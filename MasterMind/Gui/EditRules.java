@@ -2,9 +2,9 @@ package MasterMind.Gui;
 
 import MasterMind.Loc;
 import MasterMind.Rules;
+import MasterMind.Ui;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,21 +26,20 @@ public class EditRules extends Application {
         Loc.eng();
 
         primaryStage.setTitle("Mastermind");
+        primaryStage.setScene(sceneEditRules());
+        primaryStage.show();
+    }
 
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BASELINE_CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(24, 24, 24, 24));
+    public static Scene sceneEditRules() {
+        return new Scene(gridEditRules(), Ui.RESX, Ui.RESY);
+    }
 
-        Text mastertitle = new Text("MasterMind");
-        mastertitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(mastertitle, 0, 0, 2, 1);
+    public static GridPane gridEditRules() {
+        GridPane grid = Ui.uiGridPane();
 
-        Text picklangtitle = new Text(Loc.pick1 + ":");
-        picklangtitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        grid.add(picklangtitle, 0, 4, 2, 1);
-
+        Text editRuleSet = new Text(Loc.edit1 + ":");
+        editRuleSet.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+        grid.add(editRuleSet, 0, 4, 2, 1);
 
         Text rule1 = new Text(Loc.rule1);
         rule1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
@@ -55,37 +54,40 @@ public class EditRules extends Application {
         grid.add(rule3, 0, 7);
 
 
-        TextField userTextField = new TextField();
-        userTextField.appendText(String.valueOf(Rules.getMaxTries()));
-        grid.add(userTextField, 1, 5);
-
-        TextField setRuleField3 = new TextField();
-        setRuleField3.appendText(String.valueOf(Rules.getCodeValues()));
-        grid.add(setRuleField3, 1, 6);
+        TextField setRuleField1 = new TextField();
+        setRuleField1.appendText(String.valueOf(Rules.getMaxTries()));
+        grid.add(setRuleField1, 1, 5);
 
         TextField setRuleField2 = new TextField();
         setRuleField2.appendText(String.valueOf(Rules.getCodeValues()));
-        grid.add(setRuleField2, 1, 7);
+        grid.add(setRuleField2, 1, 6);
+
+        TextField setRuleField3 = new TextField();
+        setRuleField3.appendText(String.valueOf(Rules.getCodeLength()));
+        grid.add(setRuleField3, 1, 7);
 
 
+        Button buttonEditRules = new Button(Loc.msg3);
+        HBox hbButtonEditRules = Ui.uiButton(10, buttonEditRules);
+        grid.add(hbButtonEditRules, 1, 11, 2, 1);
 
-        Button btnEng = new Button(Loc.msg3);
-        HBox hbBtnEng = new HBox(10);
-        hbBtnEng.setAlignment(Pos.BOTTOM_CENTER);
-        hbBtnEng.getChildren().add(btnEng);
-        grid.add(hbBtnEng, 1, 10, 2, 1);
+        buttonEditRules.setOnAction(actionEvent -> {
+            System.out.println("OK");
+            if (Ui.isInteger(setRuleField1.getCharacters().toString()) && Ui.isInteger(setRuleField2.getCharacters().toString()) && Ui.isInteger(setRuleField3.getCharacters().toString())) {
+                int r1 = Integer.parseInt(setRuleField1.getCharacters().toString());
+                int r2 = Integer.parseInt(setRuleField2.getCharacters().toString());
+                int r3 = Integer.parseInt(setRuleField3.getCharacters().toString());
+                if (r2 > 0 && r2 <= Rules.getMaxLength() && r3 > 0 && r3 <= Rules.getMaxValues() && r1 > 0 && r1 <= 99) {
+                    Rules.editRules(r2, r3, r1);
+                    Stage stage = (Stage) grid.getScene().getWindow();
+                    stage.setScene(PickRules.scenePickRules());
+                }
 
-        btnEng.setOnAction(actionEvent -> System.out.println(Loc.msg3));
+            }//else NFE alert
 
+        });
 
-
-
-        Scene scene = new Scene(grid, 300, 300);
-        primaryStage.setScene(scene);
-
-
-        primaryStage.show();
-
+        return grid;
     }
 }
 
