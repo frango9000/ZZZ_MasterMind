@@ -55,7 +55,6 @@ public class Ui extends Application {
         return hbButton;
     }
 
-
     public static Button addOkButton(GridPane grid, int columnIndex, int rowIndex, int colSpan, int rowSpan){
         Button okButton = new Button(Loc.msg3);
         HBox hbOkButton = Ui.uiButton(10, okButton);

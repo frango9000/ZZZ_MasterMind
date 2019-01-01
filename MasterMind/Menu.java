@@ -49,26 +49,14 @@ public class Menu {
 
     public static boolean menuNewGame() {
         String[] opciones = {Loc.newgame1, Loc.newgame2};
-        int newg = JOptionPane.showOptionDialog(null, Loc.newgame1, "MasterMind", 0, 0, null, opciones, 3);
-
-        switch (newg) {
-            case 0:
-                return true;
-            default:
-                return false;
-        }
+        int in = JOptionPane.showOptionDialog(null, Loc.newgame1, "MasterMind", 0, 0, null, opciones, 3);
+        return Console.true0(in);
     }
 
     public static boolean menuPickRival() {
         String[] opciones = {Loc.opo1, Loc.opo2};
-        int newg = JOptionPane.showOptionDialog(null, Loc.opo3, "MasterMind", 0, 0, null, opciones, 3);
-
-        switch (newg) {
-            case 0:
-                return true;
-            default:
-                return false;
-        }
+        int in = JOptionPane.showOptionDialog(null, Loc.opo3, "MasterMind", 0, 0, null, opciones, 3);
+        return Console.true0(in);
     }
 
     public static void menuPickLang() {
@@ -77,7 +65,7 @@ public class Menu {
         Loc.pickLang(i);
     }
     
-    public static String menuInsertCode(Game game) {
+    public static String menuInsertCode() {
         String label = "";
         String codeIn = "";
         do {
@@ -89,12 +77,10 @@ public class Menu {
                     "MasterMind", 3);
             label = Loc.err1;
         } while (!Code.codeCheck(codeIn));
-
         return codeIn;
     }
 
     public static String menuInsertDeCode(Game game) {
-
         String label = "";
         String deCodeIn = "";
         do {
@@ -112,15 +98,9 @@ public class Menu {
         return deCodeIn;
     }
 
-    public static void menuGameOver(Game game,Code code, Code deCod) {
-        String finalLog;
-        if (deCod.getPerfMatches() == Rules.getCodeLength()) {
-            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
-        } else {
-            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
-        }
+    public static void menuGameOver(Game game) {
         JOptionPane.showMessageDialog(null,
-                finalLog + "\n\n"
+                game.finalLog() + "\n\n"
                 + Loc.decode2 + Rules.getFormatString() + " (P) (S)\n"
                 + game.getTryLog(),
                 "MasterMind", 3);

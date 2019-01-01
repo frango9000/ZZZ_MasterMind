@@ -101,9 +101,9 @@ public class Game {
 
     public String insertCode() {
         if(ui == 0){
-            return Console.consoleInsertCode(this);
+            return Console.consoleInsertCode();
         }else {
-            return Menu.menuInsertCode(this);
+            return Menu.menuInsertCode();
         } 
     }
 
@@ -115,12 +115,30 @@ public class Game {
         } 
         
     }
+    public Code lastDeCode(){
+        Code deCode=decodes[0];
+        for(int i=0; i<=decodes.length; i++){
+            if (decodes[i]==null) break;
+            deCode=decodes[i];
+        }
+        return deCode;
+    }
 
     public void gameOver(){
         if(ui == 0){
-            Console.consoleGameOver(this, code, decodes[tries]);
+            Console.consoleGameOver(this);
         }else {
-            Menu.menuGameOver(this, code, decodes[tries]);
+            Menu.menuGameOver(this);
         }
+    }
+
+    public String finalLog(){
+        String finalLog;
+        if (lastDeCode().getPerfMatches() == Rules.getCodeLength()) {
+            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + getCode().getCode() + ")\n";
+        } else {
+            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + getCode().getCode() + ")\n";
+        }
+        return finalLog;
     }
 }

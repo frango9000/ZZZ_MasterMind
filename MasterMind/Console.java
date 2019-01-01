@@ -66,22 +66,19 @@ public class Console {
         
         Scanner scan = new Scanner(System.in);
         System.out.println(Loc.newgame1+ "?\n1: "+ Loc.newgame1+"\n2: "+ Loc.newgame2);
-        int newg = scan.nextInt();
-
-        switch (newg) {
-            case 0:
-                return true;
-            default:
-                return false;
-        }
+        int in = scan.nextInt();
+        return true0(in);
     }
 
     public static boolean consolePickRival() {
         Scanner scan = new Scanner(System.in);
         System.out.println(Loc.opo3+ "\n1: "+ Loc.opo1+"\n2: "+ Loc.opo2);
-        int newg = scan.nextInt();
+        int in = scan.nextInt();
+        return true0(in);
+    }
 
-        switch (newg) {
+    public static boolean true0(int i){
+        switch (i) {
             case 0:
                 return true;
             default:
@@ -89,7 +86,7 @@ public class Console {
         }
     }
 
-    public static String consoleInsertCode(Game game) {
+    public static String consoleInsertCode() {
         Scanner scan = new Scanner(System.in);
         String label = "";
         String codeIn = "";
@@ -121,13 +118,8 @@ public class Console {
         return deCodeIn;
     }
 
-    public static void consoleGameOver(Game game,Code code, Code deCod) {
-        String finalLog;
-        if (deCod.getPerfMatches() == Rules.getCodeLength()) {
-            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + code.getCode() + ")\n";
-        } else {
-            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + code.getCode() + ")\n";
-        }
+    public static void consoleGameOver(Game game) {
+        String finalLog = game.finalLog();
         System.out.println(
                 finalLog + "\n\n"
                 + Loc.decode2 + Rules.getFormatString() + " (P) (S)\n"

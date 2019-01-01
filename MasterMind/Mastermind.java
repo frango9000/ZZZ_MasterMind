@@ -1,9 +1,11 @@
 package MasterMind;
 
+import javafx.stage.Stage;
+
 public class Mastermind {
 
     public static void main(String[] args) {
-        if (args.length >= 1 && args[0].equalsIgnoreCase("c")) {
+        if ("c".equalsIgnoreCase(args[0])) {
             Console.consolePickLang();
             Console.consoleIntro();
             Console.consolePickRuleset();
@@ -12,7 +14,8 @@ public class Mastermind {
                 game.startGame();
             } while (Console.consoleNewGame());
             System.exit(0);
-        } else if (args.length >= 1 && args[0].equalsIgnoreCase("m")) {
+            //} else if ("m".equalsIgnoreCase(args[0]))) {
+        }else{
             Menu.menuPickLang();
             Menu.menuIntro();
             Menu.menuPickRuleset();
@@ -21,16 +24,7 @@ public class Mastermind {
                 game.startGame();
             } while (Menu.menuNewGame());
             System.exit(0);
-        } else {
-            Ui ui = new Ui();
-            ui.uiPickLang(ui.stage);
-            ui.uiIntro(ui.stage);
-            Menu.menuPickRuleset();
-            do {
-                Game game = new Game(1);
-                game.startGame();
-            } while (Menu.menuNewGame());
-            System.exit(0);
+        //} else {//UI
         }
     }
 }
