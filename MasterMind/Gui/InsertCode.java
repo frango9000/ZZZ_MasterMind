@@ -50,7 +50,7 @@ public class InsertCode extends Application {
                 System.out.println("valid");
 
                 Code code = new Code(introCode.getCharacters().toString());
-                Game game = Ui.startGame(code);
+                Game game = new Game(code);
                 Ui.setScene(InsertDeCode.sceneInsertDeCode(game), grid);
             }
 

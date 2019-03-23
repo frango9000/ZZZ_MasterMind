@@ -20,15 +20,18 @@ public class Ui extends Application {
     public static final int RESX = 300;
     public static final int RESY = 300;
 
+    public static Stage stage=new Stage();
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
+
         stage.setTitle("MasterMind");
-        stage.setScene(MasterMind.Gui.PickLang.scenePickLang());
-        stage.show();
+        pickLang();
+        intro();
     }
 
     public static GridPane uiGridPane() {
@@ -123,5 +126,69 @@ public class Ui extends Application {
     public static void setScene(Scene scene, GridPane ParentGrid){
         Stage stage = (Stage) ParentGrid.getScene().getWindow();
         stage.setScene(scene);
+    }
+    public static Scene createScene(GridPane grid){
+        return new Scene(grid, RESX, RESY);
+    }
+
+
+    public static void pickLang(){
+        GridPane grid = Ui.uiGridPane();
+
+        Button engButton = Ui.addButton(grid, "English", 0, 10);
+        engButton.setOnAction(actionEvent -> {
+            Loc.eng();
+            //Stage stage = (Stage) grid.getScene().getWindow();
+            stage.hide();
+        });
+
+        Button espButton = Ui.addButton(grid, "Español", 1, 10);
+        espButton.setOnAction(actionEvent -> {
+            Loc.esp();
+            //Stage stage = (Stage) grid.getScene().getWindow();
+            stage.hide();
+        });
+        Scene scene = createScene(grid);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public static void intro(){
+        GridPane grid = Ui.uiGridPane();
+
+        Ui.addText(grid, Loc.intro, 8, 0, 2);
+
+        Button okButton = Ui.addButton(grid, "OK", 0, 14);
+
+        okButton.setOnAction(actionEvent -> {
+            Rules.defaultRules();
+            Stage stage = (Stage) grid.getScene().getWindow();
+            stage.setScene(PickRules.scenePickRules());
+        });
+
+        Scene scene = createScene(grid);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    void pickRuleset(){
+
+    }
+    void newRules(){
+
+    }
+    boolean pickRival(){
+        return true;
+    }
+    String insertCode(){
+        return"";
+    }
+    String insertDeCode(Game game){
+        return"";
+    }
+    void gameOver(Game game){
+
+    }
+    boolean newGame(){
+        return true;
     }
 }

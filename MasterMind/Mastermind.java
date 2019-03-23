@@ -1,30 +1,27 @@
 package MasterMind;
 
-import javafx.stage.Stage;
-
 public class Mastermind {
 
     public static void main(String[] args) {
         if ("c".equalsIgnoreCase(args[0])) {
-            Console.consolePickLang();
-            Console.consoleIntro();
-            Console.consolePickRuleset();
+            Console.pickLang();
+            Console.intro();
+            Console.pickRuleset();
             do {
                 Game game = new Game(0);
                 game.startGame();
-            } while (Console.consoleNewGame());
+            } while (Console.newGame());
             System.exit(0);
-            //} else if ("m".equalsIgnoreCase(args[0]))) {
-        }else{
-            Menu.menuPickLang();
-            Menu.menuIntro();
-            Menu.menuPickRuleset();
+        } else if ("m".equalsIgnoreCase(args[0])){
+            Menu.pickLang();
+            Menu.intro();
+            Menu.pickRuleset();
             do {
                 Game game = new Game(1);
                 game.startGame();
-            } while (Menu.menuNewGame());
+            } while (Menu.newGame());
+        } else{
             System.exit(0);
-        //} else {//UI
         }
     }
 }

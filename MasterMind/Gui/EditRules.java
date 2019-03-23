@@ -4,15 +4,10 @@ import MasterMind.Loc;
 import MasterMind.Rules;
 import MasterMind.Ui;
 import javafx.application.Application;
-import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EditRules extends Application {
@@ -43,7 +38,7 @@ public class EditRules extends Application {
         Ui.addText(grid, Loc.rule1, 12, 0,6);
         Ui.addText(grid, Loc.rule1, 12, 0,7);
 
-        TextField setRuleField1 = Ui.addTextField(grid, String.valueOf(Rules.getMaxTries()), 1, 5);
+        TextField setRuleField1 = Ui.addTextField(grid, String.valueOf(Rules.getGameTries()), 1, 5);
         TextField setRuleField2 = Ui.addTextField(grid, String.valueOf(Rules.getCodeValues()), 1, 6);
         TextField setRuleField3 = Ui.addTextField(grid, String.valueOf(Rules.getCodeLength()), 1, 7);
 

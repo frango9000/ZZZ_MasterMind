@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Console {
 
-    public static void consolePickLang() {
+    public static void pickLang() {
         Scanner scan = new Scanner(System.in);
         String[] opciones = Loc.langs;
 
@@ -19,11 +19,11 @@ public class Console {
         }
         Loc.pickLang(scan.nextInt());
     }
-    public static void consoleIntro() {
+    public static void intro() {
         System.out.println( Loc.intro );
     }
 
-    public static void consolePickRuleset() {
+    public static void pickRuleset() {
         Rules.defaultRules();
         Scanner scan = new Scanner(System.in);
         System.out.println(Loc.pick1 +"\n1 : "+ Loc.edit1 + "\n2 : "+ Loc.pick2+" "+ Rules.rulesToString());
@@ -31,14 +31,14 @@ public class Console {
 
         switch (seleccion) {
             case 0:
-                consoleNewRules();
+                newRules();
                 break;
             default:
                 break;
         }
     }
 
-    public static void consoleNewRules() {
+    public static void newRules() {
         int codeL, codeV, maxT;
         String label = "";
         Scanner scan = new Scanner(System.in);
@@ -46,13 +46,13 @@ public class Console {
             System.out.println(label + Loc.edit2 + Loc.rule1 + " ( 2 - 99 ) : ");
             maxT = scan.nextInt();
             label = Loc.err1 + "\n";
-        } while (!Rules.setMaxTries(maxT));
+        } while (!Rules.setGameMaxTries(maxT));
         label = "";
         do {
             System.out.println( label + Loc.edit2 + Loc.rule2 + " ( 2 - " + Rules.getMaxLength() + " ) : ");
             codeL = scan.nextInt();
             label = Loc.err1 + "\n";
-        } while (!Rules.setCodeLenght(codeL));
+        } while (!Rules.setCodeLength(codeL));
         label = "";
         do {
             System.out.println( label + Loc.edit2 + Loc.rule3 + " ( 2 - " + Rules.getMaxValues() + " ) : ");
@@ -62,31 +62,22 @@ public class Console {
         System.out.println( Loc.edit4 + Rules.rulesToString());
     }
 
-    public static boolean consoleNewGame() {
+    public static boolean newGame() {
         
         Scanner scan = new Scanner(System.in);
         System.out.println(Loc.newgame1+ "?\n1: "+ Loc.newgame1+"\n2: "+ Loc.newgame2);
         int in = scan.nextInt();
-        return true0(in);
+        return !Game.intToBoolean(in);
     }
 
-    public static boolean consolePickRival() {
+    public static boolean pickRival() {
         Scanner scan = new Scanner(System.in);
         System.out.println(Loc.opo3+ "\n1: "+ Loc.opo1+"\n2: "+ Loc.opo2);
         int in = scan.nextInt();
-        return true0(in);
+        return !Game.intToBoolean(in);
     }
 
-    public static boolean true0(int i){
-        switch (i) {
-            case 0:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    public static String consoleInsertCode() {
+    public static String insertCode() {
         Scanner scan = new Scanner(System.in);
         String label = "";
         String codeIn = "";
@@ -99,7 +90,7 @@ public class Console {
         return codeIn;
     }
 
-    public static String consoleInsertDeCode(Game game) {
+    public static String insertDeCode(Game game) {
         Scanner scan = new Scanner(System.in);
         String label = "";
         String deCodeIn = "";
@@ -108,7 +99,7 @@ public class Console {
                     + Loc.decode1 + "\n"
                     + Loc.code2 + Rules.getFormatString() + "\n"
                     + Arrays.toString(Rules.getOptionsArray()) + "\n"
-                    + Loc.decode2 + (game.getTries() + 1) + " / " + Rules.getMaxTries() + " !\n\n"
+                    + Loc.decode2 + (game.getTries() + 1) + " / " + Rules.getGameTries() + " !\n\n"
                     + Loc.decode2 + Rules.getFormatString() + " (P) (S)\n"
                     + game.getTryLog());
             
@@ -118,7 +109,7 @@ public class Console {
         return deCodeIn;
     }
 
-    public static void consoleGameOver(Game game) {
+    public static void gameOver(Game game) {
         String finalLog = game.finalLog();
         System.out.println(
                 finalLog + "\n\n"

@@ -34,17 +34,7 @@ public class Intro extends Application {
     }
 
     public static GridPane gridIntro() {
-        GridPane grid = Ui.uiGridPane();
 
-        Ui.addText(grid, Loc.intro, 8, 0, 2);
-
-        Button okButton = Ui.addButton(grid, "OK", 0, 14);
-
-        okButton.setOnAction(actionEvent -> {
-            Rules.defaultRules();
-            Stage stage = (Stage) grid.getScene().getWindow();
-            stage.setScene(PickRules.scenePickRules());
-        });
-        return grid;
+        return null;
     }
 }

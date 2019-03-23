@@ -32,22 +32,8 @@ public class PickLang extends Application {
     }
 
     public static GridPane gridPickLang() {
-        GridPane grid = Ui.uiGridPane();
 
-        Button engButton = Ui.addButton(grid, "English", 0, 10);
-        engButton.setOnAction(actionEvent -> {
-            Loc.eng();
-            Stage stage = (Stage) grid.getScene().getWindow();
-            stage.setScene(Intro.sceneIntro());
-        });
 
-        Button espButton = Ui.addButton(grid, "Español", 1, 10);
-        espButton.setOnAction(actionEvent -> {
-            Loc.esp();
-            Stage stage = (Stage) grid.getScene().getWindow();
-            stage.setScene(Intro.sceneIntro());
-        });
-
-        return grid;
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 package MasterMind;
+
 /**
- *
  * @author fsancheztemprano
  */
 public class Game {
@@ -9,16 +9,21 @@ public class Game {
     private String tryLog;
     private Code code;
     private Code[] decodes;
+    private Rules rules;
+
 
     public Code[] getDecodes() {
         return decodes;
     }
+
     public void setDecodes(Code[] decodes) {
         this.decodes = decodes;
     }
+
     public Code getDecodes(int index) {
         return decodes[index];
     }
+
     public void setDecodes(Code deCode, int index) {
         this.decodes[index] = deCode;
     }
@@ -28,14 +33,15 @@ public class Game {
     public Game(int ui) {
         tries = 0;
         tryLog = "";
-        decodes = new Code[Rules.getMaxTries() + 1];
-        this.ui=ui;
+        decodes = new Code[Rules.getGameTries() + 1];
+        this.ui = ui;
     }
+
     public Game(Code code) {
         this.code = code;
         tries = 0;
         tryLog = "";
-        decodes = new Code[Rules.getMaxTries() + 1];
+        decodes = new Code[Rules.getGameTries() + 1];
         this.ui = 2;
     }
 
@@ -74,71 +80,92 @@ public class Game {
 
     public void startGame() {
         if (pickRival()) {
-            code = new Code(insertCode());
-        } else {
             code = new Code();
+        } else {
+            code = new Code(insertCode());
         }
 
         do {
             Code deCode = new Code(insertDeCode(), code);
             incTries();
             decodes[tries] = deCode;
-            updateLog(getTries() + "/" + Rules.getMaxTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
+            updateLog(getTries() + "/" + Rules.getGameTries() + " " + deCode.getCode() + " " + deCode.getPerfMatches() + " " + deCode.getSemiMatches() + "\n");
             if (deCode.getPerfMatches() >= Rules.getCodeLength()) {
                 break;
             }
-        } while (tries < Rules.getMaxTries());
-
+        } while (tries < Rules.getGameTries());
         gameOver();
     }
-    public boolean pickRival(){
-        if(ui == 0){
-            return Console.consolePickRival();
-        }else {
-            return Menu.menuPickRival();
-        }        
+
+    public boolean pickRival() {
+        switch (ui) {
+            case 0:
+                return Console.pickRival();
+            case 1:
+                return Menu.pickRival();
+            default:
+                return false;//ui
+        }
     }
 
     public String insertCode() {
-        if(ui == 0){
-            return Console.consoleInsertCode();
-        }else {
-            return Menu.menuInsertCode();
-        } 
+        switch (ui) {
+            case 0:
+                return Console.insertCode();
+            case 1:
+                return Menu.insertCode();
+            default:
+                return null;//ui
+        }
     }
 
-    public String insertDeCode() {        
-        if(ui == 0){
-            return Console.consoleInsertDeCode(this);
-        }else {
-            return Menu.menuInsertDeCode(this);
-        } 
-        
+    public String insertDeCode() {
+        switch (ui) {
+            case 0:
+                return Console.insertDeCode(this);
+            case 1:
+                return Menu.insertDeCode(this);
+            default:
+                return null;//Ui
+        }
     }
-    public Code lastDeCode(){
-        Code deCode=decodes[0];
-        for(int i=0; i<=decodes.length; i++){
-            if (decodes[i]==null) break;
-            deCode=decodes[i];
+
+    public void gameOver() {
+        switch (ui) {
+            case 0:
+                Console.gameOver(this);
+                break;
+            case 1:
+                Menu.gameOver(this);
+                break;
+            default:
+                //ui
+        }
+    }
+
+    public Code lastDeCode() {
+        Code deCode = decodes[0];
+        for (int i = 0; i <= decodes.length; i++) {
+            if (decodes[i] == null) break;
+            deCode = decodes[i];
         }
         return deCode;
     }
 
-    public void gameOver(){
-        if(ui == 0){
-            Console.consoleGameOver(this);
-        }else {
-            Menu.menuGameOver(this);
+    public String finalLog() {
+        if (lastDeCode().getPerfMatches() == Rules.getCodeLength()) {
+            return Loc.over1 + "\n\n" + Loc.over2 + "! (" + getCode().getCode() + ")\n";
+        } else {
+            return Loc.over1 + "\n\n" + Loc.over3 + "! (" + getCode().getCode() + ")\n";
         }
     }
 
-    public String finalLog(){
-        String finalLog;
-        if (lastDeCode().getPerfMatches() == Rules.getCodeLength()) {
-            finalLog = Loc.over1 + "\n\n" + Loc.over2 + "! (" + getCode().getCode() + ")\n";
-        } else {
-            finalLog = Loc.over1 + "\n\n" + Loc.over3 + "! (" + getCode().getCode() + ")\n";
+    public static boolean intToBoolean(int i) {
+        switch (i) {
+            case 0:
+                return false;
+            default:
+                return true;
         }
-        return finalLog;
     }
 }

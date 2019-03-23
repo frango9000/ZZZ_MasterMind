@@ -24,8 +24,8 @@ public class Code {
         code = Rules.buildFormatString(Rules.getCodeLength());                //code = "XXXX"
 
         for (int i = 1; i <= Rules.getCodeLength(); i++) {
-            int randn = rand.nextInt(options.length());                 //Length of String options = "ABCDEF"
-            if(Rules.DEBUG)System.out.println(randn);                   //DEBUG
+            int randn = rand.nextInt(options.length());                 //Length of String options = "ABCDEF"                  //DEBUG
+            if(Rules.isDEBUG())System.out.println(randn);                   //DEBUG
             randCode[i - 1] = options.charAt(randn);
         }
         code = new String(randCode);
@@ -33,6 +33,10 @@ public class Code {
 
     public Code(String code) {
         this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public Code(String code, Code cod) {
@@ -48,9 +52,7 @@ public class Code {
 
     }
 
-    public String getCode() {
-        return code;
-    }
+
 
     public int getPerfMatches() {
         return perfMatches;
